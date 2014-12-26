@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="row_margin">10dp</dimen>
+    <dimen name="row_content_padding">10dp</dimen>
+    <dimen name="border">1dp</dimen>
+    <dimen name="padding_thumbnail">15dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="thumbnail_size">110dp</dimen>
+    <dimen name="padding_content">20dp</dimen>
+    <dimen name="line_spacing">5dp</dimen>
+    <dimen name="margin_title_bottom">20dp</dimen>
+    <dimen name="margin_image_bottom">25dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="navigation_drawer_width">240dp</dimen>
+
+</resources>

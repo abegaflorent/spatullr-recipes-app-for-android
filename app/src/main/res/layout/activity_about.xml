@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/color_primary"
+        android:titleTextAppearance="@android:color/white"
+        app:theme="@style/ThemeSpatullr"
+        app:popupTheme="@style/Theme.AppCompat"/>
+
+    <fragment
+        android:id="@+id/item_list"
+        android:name="com.pongodev.recipesapp.fragments.FragmentAbout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        tools:context="com.pongodev.recipesapp.ActivityAbout"
+        android:layout_below="@+id/toolbar"/>
+</RelativeLayout>
+
+
+
