@@ -1,14 +1,11 @@
 package com.pongodev.recipesapp;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.pongodev.recipesapp.fragments.FragmentFavorites;
 import com.pongodev.recipesapp.utils.DBHelperFavorites;
@@ -79,58 +76,10 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentFavo
 
     @Override
     public void onRecipeSelected(String ID, String Action) {
-
-            // Display confirm dialog
-            final String id = ID;
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.actions);
-            builder.setItems(R.array.actions,new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    switch(which){
-                        case 0:
-                            Intent detailIntent = new Intent();
-                            detailIntent.putExtra(Utils.ARG_KEY, id);
-                            detailIntent.putExtra(Utils.ARG_PARENT_ACTIVITY, Utils.ARG_ACTIVITY_FAVORITES);
-                            startActivity(detailIntent.setClass(getApplicationContext(), ActivityDetail.class));
-                            overridePendingTransition(R.anim.open_next, R.anim.close_main);
-                            break;
-                        case 1:
-                            boolean result = dbhelperFavorites.deleteRecipeFromFavorites(id);
-                            if(result) {
-                                Toast.makeText(getApplicationContext(), R.string.success_remove, Toast.LENGTH_SHORT).show();
-
-                                Bundle arguments = new Bundle();
-                                arguments.putString(Utils.ARG_PAGE, Utils.ARG_FAVORITES);
-                                FragmentFavorites fragment = new FragmentFavorites();
-                                fragment.setArguments(arguments);
-                                getSupportFragmentManager().beginTransaction()
-                                        .replace(R.id.item_container, fragment)
-                                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                                        .commit();
-                                dialog.dismiss();
-
-                            }
-                            break;
-                    }
-                }
-            });
-
-            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    dialog.dismiss();
-
-                }
-            });
-
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
-
-
-
+        Intent detailIntent = new Intent(getApplicationContext(), ActivityDetailFavorites.class);
+        detailIntent.putExtra(Utils.ARG_KEY, ID);
+        startActivity(detailIntent);
+        overridePendingTransition(R.anim.open_next, R.anim.close_main);
     }
 
     @Override
@@ -143,5 +92,19 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentFavo
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.open_main, R.anim.close_next);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Bundle arguments = new Bundle();
+        arguments.putString(Utils.ARG_PAGE, Utils.ARG_FAVORITES);
+        FragmentFavorites fragment = new FragmentFavorites();
+        fragment.setArguments(arguments);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.item_container, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
     }
 }

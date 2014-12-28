@@ -40,7 +40,8 @@
             android:name=".ActivitySearch"
             android:label="@string/search_result"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ActivityHome">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -48,9 +49,6 @@
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.pongodev.recipesapp.ActivityHome" />
         </activity>
 
         <provider
@@ -60,23 +58,28 @@
         <activity
             android:name=".ActivityDetail"
             android:label=""
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ActivityHome">
         </activity>
         <activity
             android:name=".ActivityFavorites"
             android:label="@string/favorites"
-            android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.pongodev.recipesapp.ActivityHome" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ActivityHome">
         </activity>
+
+        <activity
+            android:name=".ActivityDetailFavorites"
+            android:label=""
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ActivityFavorites">
+        </activity>
+
         <activity
             android:name=".ActivityAbout"
             android:label="@string/about"
-            android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.pongodev.recipesapp.ActivityHome" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ActivityHome">
         </activity>
         <!-- Include the AdActivity configChanges and theme. -->
         <activity
@@ -85,10 +88,8 @@
             android:theme="@android:style/Theme.Translucent" />
         <activity
             android:name=".ActivityRecipes"
-            android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.pongodev.recipesapp.ActivityHome" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".ActivityHome">
         </activity>
     </application>
 

@@ -2,67 +2,81 @@
 <items version="2" >
 
     <item
-        jar="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
-        <dex dex="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/pre-dexed/debug/classes-cecc1a95c521107dc00823515f957bfc8adb31d5.jar" />
-    </item>
-    <item
-        jar="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/libs/internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="01ec05bfbafcc07646ba813000bf2ef11742dd03">
-        <dex dex="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-5edb7ad083517beb594fc4360206d746f691df71.jar" />
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-38716b2c839b926c426bf39877f9ffd90971ca4f.jar" />
     </item>
     <item
-        jar="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
-        <dex dex="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/pre-dexed/debug/classes-9c2612aebb167692495af8b750f390dd4852cdf5.jar" />
-    </item>
-    <item
-        jar="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="efeda77c808750cb670ee9c48d8a1835d89dbcb2">
-        <dex dex="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/pre-dexed/debug/classes-371d1e12b2cea1a2a02560cda5292b45ec0c853a.jar" />
+        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-9dd91a8b5884eed0458caefd0b20b4408bb0ae9a.jar" />
     </item>
     <item
         jar="/Users/taufanerfiyanto/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.4.0/f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2/picasso-2.4.0.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2">
-        <dex dex="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/pre-dexed/debug/picasso-2.4.0-6b5c7f8e54c736dc31f2f3d486e975dfc2db9707.jar" />
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/picasso-2.4.0-6b5c7f8e54c736dc31f2f3d486e975dfc2db9707.jar" />
     </item>
     <item
-        jar="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/exploded-aar/com.github.traex.rippleeffect/library/1.2.2/classes.jar"
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.github.traex.rippleeffect/library/1.2.2/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="654c6419d70de56fcc0e3a098a948827a4b417f8">
-        <dex dex="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/pre-dexed/debug/classes-f8e1aff3880c74e63d2224bb64f7b06aaf02bf24.jar" />
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-6759de9904195581762be1516271cbba329561b8.jar" />
+    </item>
+    <item
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="dd9247ea0fabe8ee479638c4b4a23e93752be256">
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-3945a82cb83cd0866354475bc89ea90aa47a4737.jar" />
     </item>
     <item
         jar="/Users/taufanerfiyanto/Documents/Software/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.3/support-annotations-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="4b74cefe1f0c1b819e7260c8627a14674e37fd35">
-        <dex dex="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-d781bc303885bb0f544771e42d081b9f4b3bfe03.jar" />
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-d781bc303885bb0f544771e42d081b9f4b3bfe03.jar" />
     </item>
     <item
-        jar="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.3/classes.jar"
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.jpardogo.materialtabstrip/library/1.0.6/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
-        <dex dex="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/pre-dexed/debug/classes-b58c80290dc5dea75661316d4cf0013b81adbc63.jar" />
+        sha1="15ebf37e2dc7047e993afdfb308610e171bcea1b">
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-6a544b3e3b0097a1b69f9bc2684d0c38d0dda9cc.jar" />
     </item>
     <item
-        jar="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/exploded-aar/com.makeramen/roundedimageview/1.4.0/classes.jar"
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.makeramen/roundedimageview/1.4.0/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="d611cf555f9f1191bff8c376218ec650a7f19ea7">
-        <dex dex="/Users/taufanerfiyanto/Dropbox/Freelance Work/Pongodev/Products/CodeCanyon/Archives/Layar Tancep/Finish/Layar Tancep 1.4.0/Projects/RecipesAppforAndroid/app/build/intermediates/pre-dexed/debug/classes-b34b1e6c51a054213e60681a9b50ed01c0a20267.jar" />
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-6101f3dff82428c10150e700405709da1ea82792.jar" />
+    </item>
+    <item
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="2c91c949a45a21cdecf26e03951e46c7beec9ad8">
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-4bb8592a523b214bf59f61d77955e5bd1e1d3209.jar" />
+    </item>
+    <item
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="efeda77c808750cb670ee9c48d8a1835d89dbcb2">
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-dd38de3430dd98fa4d6151dd9526e3616304be2f.jar" />
+    </item>
+    <item
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-73aeb14817c530942ac52c7e27167cfa5e91f81e.jar" />
     </item>
 
 </items>

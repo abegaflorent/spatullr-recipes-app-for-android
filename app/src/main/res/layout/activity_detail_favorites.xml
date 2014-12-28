@@ -30,12 +30,13 @@
             app:rv_type="doubleRipple"
             app:rv_rippleDuration="50">
         <ImageButton
-            android:id="@+id/btnFavorite"
+            android:id="@+id/btnUnfavorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_favorite_white_36dp"
+            android:src="@drawable/ic_favorite_outline_white_36dp"
             android:background="@drawable/circle_button"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:elevation="10dp"/>
         </com.andexert.library.RippleView>
 
         <android.support.v7.widget.Toolbar
@@ -113,7 +114,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        ads:adSize="BANNER"
+        ads:adSize="SMART_BANNER"
         ads:adUnitId="@string/banner_ad_unit_id"
         android:layout_alignParentBottom="true">
     </com.google.android.gms.ads.AdView>

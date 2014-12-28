@@ -10,15 +10,18 @@ public class Utils {
 
     // Application parameters. do not change this parameters.
     public static final String ARG_PAGE = "page";
-    public static final String ARG_PARENT_ACTIVITY = "parent_activity";
-    public static final String ARG_ACTIVITY_HOME = "ActivityHome";
-    public static final String ARG_ACTIVITY_RECIPES = "ActivityRecipes";
     public static final String ARG_CATEGORY = "category";
     public static final String ARG_SEARCH = "search";
-    public static final String ARG_ACTIVITY_SEARCH = "ActivitySearch";
     public static final String ARG_FAVORITES = "favorites";
-    public static final String ARG_ACTIVITY_FAVORITES = "ActivityFavorites";
     public static final String ARG_KEY = "key";
+    public static final String ARG_POSITION = "position";
+    public static final String ARG_TAG_CONTENT = "CONTENT_HERE";
+    public static final String ARG_COOK_TIME = "cook_time";
+    public static final String ARG_SERVINGS = "servings";
+    public static final String ARG_SUMMARY = "summary";
+    public static final String ARG_INFO = "info";
+
+
 
     // Admob visibility parameter. set 0 to show admob and 8 to hide.
     public static final int ARG_ADMOB_VISIBILITY = 0;

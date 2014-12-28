@@ -69,7 +69,6 @@ public class ActivityRecipes extends ActionBarActivity implements FragmentRecipe
     public void onRecipeSelected(String ID, String CategoryName) {
         Intent detailIntent = new Intent();
         detailIntent.putExtra(Utils.ARG_KEY, ID);
-        detailIntent.putExtra(Utils.ARG_PARENT_ACTIVITY, Utils.ARG_ACTIVITY_RECIPES);
         startActivity(detailIntent.setClass(this, ActivityDetail.class));
         overridePendingTransition(R.anim.open_next, R.anim.close_main);
     }

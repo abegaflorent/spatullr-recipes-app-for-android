@@ -11,8 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.gms.ads.AdView;
 import com.pongodev.recipesapp.R;
@@ -36,7 +36,7 @@ public class FragmentFavorites extends Fragment {
 
     RecyclerView recyclerView;
     ProgressBar prgLoading;
-    Button btnRefresh;
+    TextView txtEmpty;
     AdView adView;
 
     DBHelperRecipes dbhelperRecipes;
@@ -92,6 +92,7 @@ public class FragmentFavorites extends Fragment {
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         prgLoading = (ProgressBar) rootView.findViewById(R.id.prgLoading);
         adView = (AdView) rootView.findViewById(R.id.adView);
+        txtEmpty = (TextView) rootView.findViewById(R.id.txtEmpty);
 
         boolean isAdmobVisible = Utils.admobVisibility(adView, Utils.ARG_ADMOB_VISIBILITY);
         if(isAdmobVisible)
@@ -160,8 +161,14 @@ public class FragmentFavorites extends Fragment {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             prgLoading.setVisibility(View.GONE);
-            recyclerView.setVisibility(View.VISIBLE);
-            adapterFavorites.updateList(recipeIds, recipeNames, cookTimes, servings, images);
+
+            if(recipeIds.isEmpty()) {
+                txtEmpty.setVisibility(View.VISIBLE);
+            }else {
+                txtEmpty.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+                adapterFavorites.updateList(recipeIds, recipeNames, cookTimes, servings, images);
+            }
 
             recyclerView.setAdapter(adapterFavorites);
         }

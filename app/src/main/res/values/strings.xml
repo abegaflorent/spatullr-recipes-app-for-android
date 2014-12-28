@@ -29,7 +29,7 @@
     <string name="search_result">Search Result</string>
     <string name="search_hint">Type Recipe Name</string>
     <string name="data_exist">Recipe has already added to favorites</string>
-    <string name="success_add_data">Recipe has been successfully added to favorites</string>
+    <string name="success_add_data">Recipe successfully added to favorites</string>
     <string name="subject">Hi, i just try new recipe on Recipes App for Android</string>
     <string name="message">You can download Recipes App for Android at </string>
     <string name="intro_message">Hi, i just try new recipe, </string>
@@ -40,19 +40,20 @@
     <string name="summary">SUMMARY</string>
     <string name="ingredients">INGREDIENTS</string>
     <string name="steps">STEPS</string>
-    <string name="actions">Actions</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
+    <string name="confirm_message">remove recipes from favorites?</string>
+    <string name="remove">Remove</string>
     <string name="success_remove">Successfully removed recipe from favorites</string>
+    <string name="no_recipes">No recipes</string>
 
-    <string-array name="actions">
-        <item>View</item>
-        <item>Remove</item>
+
+    <string-array name="detail_pagers">
+        <item>SUMMARY</item>
+        <item>INGREDIENTS</item>
+        <item>DIRECTIONS</item>
     </string-array>
-    <string-array name="tab_title">
-        <item>CATEGORIES</item>
-        <item>FAVORITES</item>
-    </string-array>
+
 
     <!-- Setting preferences string -->
     <string name="pref_key_about">pref_key_about</string>
