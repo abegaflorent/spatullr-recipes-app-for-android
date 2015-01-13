@@ -11,9 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.google.android.gms.ads.AdView;
 import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.adapters.AdapterRecipes;
@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class FragmentRecipes extends Fragment {
 
     RecyclerView recyclerView;
-    ProgressBar prgLoading;
+    ProgressBarCircularIndeterminate prgLoading;
     TextView txtEmpty;
     AdView adView;
 
@@ -89,7 +89,7 @@ public class FragmentRecipes extends Fragment {
 
         // Connect view objects and view id on xml.
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        prgLoading = (ProgressBar) rootView.findViewById(R.id.prgLoading);
+        prgLoading = (ProgressBarCircularIndeterminate) rootView.findViewById(R.id.prgLoading);
         adView = (AdView) rootView.findViewById(R.id.adView);
         txtEmpty = (TextView) rootView.findViewById(R.id.txtEmpty);
 

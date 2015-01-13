@@ -19,7 +19,7 @@ public class FragmentInfo extends Fragment {
     private String info;
 
     String htmlFormat = "<body bgcolor=\"#FBFBFB\">" +
-            "<font color=\"#3E3E3E\">"+ Utils.ARG_TAG_CONTENT+ "</font>" +
+            "<font color=\"#212121\">"+ Utils.ARG_TAG_CONTENT+ "</font>" +
             "</body>";
 
 

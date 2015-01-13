@@ -14,7 +14,6 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -22,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.gc.materialdesign.views.ButtonFloat;
 import com.google.android.gms.ads.AdView;
 import com.pongodev.recipesapp.adapters.AdapterDetailPager;
 import com.pongodev.recipesapp.fragments.FragmentInfo;
@@ -41,9 +41,9 @@ public class ActivityDetailFavorites extends ActionBarActivity {
     ImageView imgRecipe;
     TextView txtRecipeName, txtCategory;
 
-    LinearLayout lytDetail;
+    LinearLayout lytDetail, lytTitle;
     ProgressBar prgLoading;
-    ImageButton btnUnfavorite;
+    ButtonFloat btnUnfavorite;
     AdView adView;
     PagerSlidingTabStrip tabs;
     ViewPager pager;
@@ -83,10 +83,11 @@ public class ActivityDetailFavorites extends ActionBarActivity {
 
         prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
         lytDetail = (LinearLayout) findViewById(R.id.lytDetail);
+        lytTitle = (LinearLayout) findViewById(R.id.lytTitle);
         imgRecipe = (ImageView) findViewById(R.id.imgRecipe);
         txtRecipeName = (TextView) findViewById(R.id.txtRecipeName);
         txtCategory = (TextView) findViewById(R.id.txtCategory);
-        btnUnfavorite = (ImageButton) findViewById(R.id.btnUnfavorite);
+        btnUnfavorite = (ButtonFloat) findViewById(R.id.btnUnfavorite);
         adView = (AdView) findViewById(R.id.adView);
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         pager = (ViewPager) findViewById(R.id.pager);

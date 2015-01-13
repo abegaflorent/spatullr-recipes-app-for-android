@@ -12,14 +12,14 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.gc.materialdesign.views.ButtonFloat;
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.google.android.gms.ads.AdView;
 import com.pongodev.recipesapp.adapters.AdapterDetailPager;
 import com.pongodev.recipesapp.fragments.FragmentInfo;
@@ -39,9 +39,9 @@ public class ActivityDetail extends ActionBarActivity {
     ImageView imgRecipe;
     TextView txtRecipeName, txtCategory;
 
-    LinearLayout lytDetail;
-    ProgressBar prgLoading;
-    ImageButton btnFavorite;
+    LinearLayout lytDetail, lytTitle;
+    ProgressBarCircularIndeterminate prgLoading;
+    ButtonFloat btnFavorite;
     AdView adView;
     PagerSlidingTabStrip tabs;
     ViewPager pager;
@@ -72,12 +72,13 @@ public class ActivityDetail extends ActionBarActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
+        prgLoading = (ProgressBarCircularIndeterminate) findViewById(R.id.prgLoading);
         lytDetail = (LinearLayout) findViewById(R.id.lytDetail);
+        lytTitle = (LinearLayout) findViewById(R.id.lytTitle);
         imgRecipe = (ImageView) findViewById(R.id.imgRecipe);
         txtRecipeName = (TextView) findViewById(R.id.txtRecipeName);
         txtCategory = (TextView) findViewById(R.id.txtCategory);
-        btnFavorite = (ImageButton) findViewById(R.id.btnFavorite);
+        btnFavorite = (ButtonFloat) findViewById(R.id.btnFavorite);
         adView = (AdView) findViewById(R.id.adView);
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         pager = (ViewPager) findViewById(R.id.pager);
@@ -153,6 +154,7 @@ public class ActivityDetail extends ActionBarActivity {
             super.onPreExecute();
             prgLoading.setVisibility(View.VISIBLE);
             lytDetail.setVisibility(View.GONE);
+            lytTitle.setVisibility(View.GONE);
             btnFavorite.setVisibility(View.GONE);
         }
 
@@ -176,6 +178,7 @@ public class ActivityDetail extends ActionBarActivity {
 
             prgLoading.setVisibility(View.GONE);
             lytDetail.setVisibility(View.VISIBLE);
+            lytTitle.setVisibility(View.VISIBLE);
             btnFavorite.setVisibility(View.VISIBLE);
 
         }

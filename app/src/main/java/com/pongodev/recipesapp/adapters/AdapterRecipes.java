@@ -68,8 +68,8 @@ public class AdapterRecipes extends RecyclerView.Adapter<AdapterRecipes.ViewHold
  //       viewHolder.textView.setText(textArrayList.get(i));
         // set data to textview and imageview
         viewHolder.txtRecipeName.setText(recipeNames.get(position));
-        viewHolder.txtTime.setText(cookTime+" "+cookTimes.get(position)+" "+minutes+", ");
-        viewHolder.txtServing.setText(serveFor+" "+servings.get(position)+" "+persons);
+        viewHolder.txtTime.setText(cookTime+" "+cookTimes.get(position)+" "+minutes+", "+
+                serveFor+" "+servings.get(position)+" "+persons);
 
         int image = mContext.getResources().getIdentifier(images.get(position), "drawable", mContext.getPackageName());
         Picasso.with(mContext)
@@ -85,17 +85,16 @@ public class AdapterRecipes extends RecyclerView.Adapter<AdapterRecipes.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
-        TextView txtRecipeName, txtTime, txtServing;
+        TextView txtRecipeName, txtTime;
         RoundedImageView imgRecipe;
 
         public ViewHolder(View v)
         {
             super(v);
             // connect views object and views id on xml
-            txtRecipeName = (TextView) v.findViewById(R.id.txtRecipeName);
-            txtTime = (TextView) v.findViewById(R.id.txtTime);
-            txtServing = (TextView) v.findViewById(R.id.txtServing);
-            imgRecipe = (RoundedImageView) v.findViewById(R.id.imgRecipe);
+            txtRecipeName = (TextView) v.findViewById(R.id.txtTitle);
+            txtTime = (TextView) v.findViewById(R.id.txtSubTitle);
+            imgRecipe = (RoundedImageView) v.findViewById(R.id.imgThumbnail);
         }
     }
 

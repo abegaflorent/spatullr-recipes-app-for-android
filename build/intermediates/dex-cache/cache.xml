@@ -16,18 +16,39 @@
         <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-9dd91a8b5884eed0458caefd0b20b4408bb0ae9a.jar" />
     </item>
     <item
-        jar="/Users/taufanerfiyanto/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.4.0/f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2/picasso-2.4.0.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2">
-        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/picasso-2.4.0-6b5c7f8e54c736dc31f2f3d486e975dfc2db9707.jar" />
-    </item>
-    <item
         jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.github.traex.rippleeffect/library/1.2.2/classes.jar"
         jumboMode="false"
         revision="21.1.2"
         sha1="654c6419d70de56fcc0e3a098a948827a4b417f8">
         <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-6759de9904195581762be1516271cbba329561b8.jar" />
+    </item>
+    <item
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/spatullr-recipes-app-for-android/materialDesign/unspecified/libs/nineoldandroids-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="59f19e43354d32de831379c23ce03bb259a4c2b7">
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/nineoldandroids-2.4.0-ce75104d73a9be9c2e6c31771ae0b8cda52bbbf0.jar" />
+    </item>
+    <item
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="efeda77c808750cb670ee9c48d8a1835d89dbcb2">
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-dd38de3430dd98fa4d6151dd9526e3616304be2f.jar" />
+    </item>
+    <item
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-73aeb14817c530942ac52c7e27167cfa5e91f81e.jar" />
+    </item>
+    <item
+        jar="/Users/taufanerfiyanto/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.4.0/f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2/picasso-2.4.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f36d2d4e3a36b3259aaf9d004d29b4cdc6c1bfb2">
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/picasso-2.4.0-6b5c7f8e54c736dc31f2f3d486e975dfc2db9707.jar" />
     </item>
     <item
         jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.5.87/classes.jar"
@@ -65,18 +86,11 @@
         <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-4bb8592a523b214bf59f61d77955e5bd1e1d3209.jar" />
     </item>
     <item
-        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/21.0.0/classes.jar"
+        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/spatullr-recipes-app-for-android/materialDesign/unspecified/classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="efeda77c808750cb670ee9c48d8a1835d89dbcb2">
-        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-dd38de3430dd98fa4d6151dd9526e3616304be2f.jar" />
-    </item>
-    <item
-        jar="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/21.0.3/classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="00b0b7233e1ec64acebfac40d4983d32d4712426">
-        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-73aeb14817c530942ac52c7e27167cfa5e91f81e.jar" />
+        sha1="aa3a9e2c6acd8fa3b8d5d7f43a53d2a2eb8b4f2b">
+        <dex dex="/Users/taufanerfiyanto/AndroidStudioProjects/spatullr-recipes-app-for-android/app/build/intermediates/pre-dexed/debug/classes-7a975f2e85d3d69e94cf86e09e8082adc21887e7.jar" />
     </item>
 
 </items>

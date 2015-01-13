@@ -12,15 +12,15 @@
         android:layout_height="match_parent"
         app:cardElevation="0dp">
 
-        <ScrollView
+        <com.gc.materialdesign.views.ScrollView
             android:id="@+id/sclDetail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/padding_content">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_content">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtTime"
@@ -28,18 +28,18 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_content_color"
                     android:textStyle="bold"
-                    android:textAppearance="?android:attr/textAppearanceMedium"/>
+                    android:textSize="@dimen/text_content_size"/>
 
                 <TextView
                     android:id="@+id/txtSummary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_content_color"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textSize="@dimen/text_content_size"
                     android:lineSpacingExtra="@dimen/line_spacing"
                     android:layout_marginTop="@dimen/margin_content_top"/>
             </LinearLayout>
-        </ScrollView>
+        </com.gc.materialdesign.views.ScrollView>
     </android.support.v7.widget.CardView>
 
 </FrameLayout>
