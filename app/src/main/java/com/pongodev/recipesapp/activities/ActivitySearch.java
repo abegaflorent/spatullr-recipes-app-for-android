@@ -1,45 +1,56 @@
-package com.pongodev.recipesapp;
+package com.pongodev.recipesapp.activities;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.SearchRecentSuggestions;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.fragments.FragmentRecipes;
+import com.pongodev.recipesapp.suggestion.ProviderSuggestion;
 import com.pongodev.recipesapp.utils.Utils;
 
 /**
  * Created by taufanerfiyanto on 11/14/14.
  */
-public class ActivityRecipes extends ActionBarActivity implements FragmentRecipes.OnRecipeSelectedListener {
+public class ActivitySearch extends ActionBarActivity implements FragmentRecipes.OnRecipeSelectedListener {
 
     private String keyword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipes);
+
+
+        // get the intent, verify the action and get the query
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            keyword = intent.getStringExtra(SearchManager.QUERY);
+            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                    ProviderSuggestion.AUTHORITY, ProviderSuggestion.MODE);
+            suggestions.saveRecentQuery(keyword, null);
+        }
+        setContentView(R.layout.activity_search);
 
 
         // Show the Up button in the action bar.
         // Set up the action bar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_favorite_white_36dp);
-        toolbar.setTitle(getIntent().getStringExtra(Utils.ARG_CATEGORY));
+        toolbar.setTitle(keyword);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            Intent i = getIntent();
-            String key = i.getStringExtra(Utils.ARG_KEY);
-            String activePage = i.getStringExtra(Utils.ARG_PAGE);
             Bundle arguments = new Bundle();
-            arguments.putString(Utils.ARG_KEY, key);
-            arguments.putString(Utils.ARG_PAGE, activePage);
+            arguments.putString(Utils.ARG_KEY, keyword);
+            arguments.putString(Utils.ARG_PAGE, Utils.ARG_SEARCH);
             FragmentRecipes fragment = new FragmentRecipes();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

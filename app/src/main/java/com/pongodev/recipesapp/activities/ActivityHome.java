@@ -1,4 +1,4 @@
-package com.pongodev.recipesapp;
+package com.pongodev.recipesapp.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.fragments.FragmentCategories;
 import com.pongodev.recipesapp.fragments.FragmentRecipes;
 import com.pongodev.recipesapp.utils.Utils;

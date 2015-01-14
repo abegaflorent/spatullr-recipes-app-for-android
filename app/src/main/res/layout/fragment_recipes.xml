@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:text="@string/no_recipes"
         android:textColor="@color/text_content_color"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="@dimen/text_subtitle_detail_size"
         android:layout_centerInParent="true"
         android:visibility="gone"/>
 

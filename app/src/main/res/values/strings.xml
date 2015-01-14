@@ -37,11 +37,12 @@
     <string name="here">here:</string>
     <string name="google_play_url">https://play.google.com/store/apps/details?id=your.package.name</string>
     <string name="banner_ad_unit_id">ca-app-pub-9916016100298827/2631172790</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-9916016100298827/2158779599</string>
     <string name="summary">SUMMARY</string>
     <string name="ingredients">INGREDIENTS</string>
     <string name="steps">STEPS</string>
-    <string name="cancel">Cancel</string>
-    <string name="confirm">Confirm</string>
+    <string name="cancel">CANCEL</string>
+    <string name="confirm">CONFIRM</string>
     <string name="confirm_message">remove recipes from favorites?</string>
     <string name="remove">Remove</string>
     <string name="success_remove">Successfully removed recipe from favorites</string>

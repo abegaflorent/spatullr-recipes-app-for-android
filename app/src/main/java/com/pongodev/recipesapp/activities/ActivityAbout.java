@@ -1,10 +1,12 @@
-package com.pongodev.recipesapp;
+package com.pongodev.recipesapp.activities;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+
+import com.pongodev.recipesapp.R;
 
 /**
  * A {@link PreferenceActivity} that presents a set of application settings. On

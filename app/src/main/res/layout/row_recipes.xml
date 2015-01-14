@@ -39,7 +39,8 @@
                     style="@android:style/TextAppearance.Large"
                     android:id="@+id/txtTitle"
                     android:textColor="@color/text_row_title_color"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    android:text="title"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -48,7 +49,6 @@
                     android:id="@+id/txtSubTitle"
                     android:textColor="@color/text_row_subtitle_color"
                     android:layout_gravity="center_vertical"/>
-
 
             </LinearLayout>
 

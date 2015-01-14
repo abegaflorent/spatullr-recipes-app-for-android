@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>
-    <ProgressBar
+    <com.gc.materialdesign.views.ProgressBarCircularIndeterminate
         android:id="@+id/prgLoading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@android:style/Widget.ProgressBar.Inverse"
-        android:layout_centerInParent="true"/>
+        android:layout_width="@dimen/progress_width"
+        android:layout_height="@dimen/progress_height"
+        android:layout_centerInParent="true"
+        android:background="@color/color_primary" />
 </RelativeLayout>

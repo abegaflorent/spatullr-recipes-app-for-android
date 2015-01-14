@@ -20,7 +20,7 @@
                     android:id="@+id/txtCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@android:style/TextAppearance.Large"
+                    android:textSize="@dimen/text_subtitle_detail_size"
                     android:textColor="@color/text_row_title_color"
                     android:textStyle="bold"
                     android:layout_centerVertical="true"

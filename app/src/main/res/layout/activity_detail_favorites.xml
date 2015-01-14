@@ -21,19 +21,7 @@
             android:layout_height="@dimen/image_height"
             android:scaleType="centerCrop"/>
 
-
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize"
-            android:title=""
-            android:background="@android:color/transparent"
-            app:theme="@style/ThemeSpatullr"
-            app:popupTheme="@style/Theme.AppCompat">
-
-        </android.support.v7.widget.Toolbar>
+        <include layout="@layout/toolbar_transparent" />
 
         <LinearLayout
             android:id="@+id/lytTitle"
@@ -42,19 +30,20 @@
             android:orientation="vertical"
             android:layout_gravity="bottom"
             android:visibility="gone"
-            android:padding="@dimen/padding_content">
+            android:padding="@dimen/padding_content"
+            android:background="@drawable/gradient_transparent_background">
             <TextView
                 android:id="@+id/txtRecipeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_title_size"
+                android:textSize="@dimen/text_title_detail_size"
                 android:textColor="@color/text_title_color"
                 android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/text_subtitle_size"
+                android:textSize="@dimen/text_subtitle_detail_size"
                 android:textColor="@color/text_subtitle_color"
                 android:id="@+id/txtCategory"/>
         </LinearLayout>
@@ -99,7 +88,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        ads:adSize="SMART_BANNER"
+        ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id"
         android:layout_alignParentBottom="true">
     </com.google.android.gms.ads.AdView>
@@ -113,7 +102,7 @@
         android:background="@color/color_primary"
         android:layout_above="@+id/adView"
         android:layout_alignParentRight="true"
-        materialdesign:iconDrawable="@drawable/ic_favorite_white_36dp" />
+        materialdesign:iconDrawable="@drawable/ic_favorite_outline_white_36dp" />
 </RelativeLayout>
 
 

@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.adapters.AdapterCategories;
 import com.pongodev.recipesapp.utils.DBHelperRecipes;
@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class FragmentCategories extends Fragment {
 
     RecyclerView recyclerView;
-    ProgressBar prgLoading;
+    ProgressBarCircularIndeterminate prgLoading;
 
     DBHelperRecipes dbhelper;
 
@@ -79,7 +79,7 @@ public class FragmentCategories extends Fragment {
 
         // Connect view objects and view id on xml.
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
-        prgLoading = (ProgressBar) rootView.findViewById(R.id.prgLoading);
+        prgLoading = (ProgressBarCircularIndeterminate) rootView.findViewById(R.id.prgLoading);
 
 
         recyclerView.setHasFixedSize(true);

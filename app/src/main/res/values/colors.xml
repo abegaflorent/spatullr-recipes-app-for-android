@@ -19,6 +19,8 @@
     <color name="splash_background_color">#D32F2F</color>
     <color name="tab_background_color">#E6E8E9</color>
     <color name="list_background_color">#E6E8E9</color>
+    <color name="background_gradient_color_start">#00000000</color>
+    <color name="background_gradient_color_end">#b4000000</color>
 
 
 </resources>

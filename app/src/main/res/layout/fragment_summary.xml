@@ -10,7 +10,7 @@
         android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardElevation="0dp">
+        app:cardElevation="@dimen/card_elevation">
 
         <com.gc.materialdesign.views.ScrollView
             android:id="@+id/sclDetail"

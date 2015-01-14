@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="ThemeSpatullr" parent="Theme.AppCompat">
+    <style name="CustomTheme" parent="Theme.AppCompat">
         <!-- android:textColorPrimary is the  color of the title text
              in the Toolbar, in the Theme.AppCompat theme:  -->
         <item name="android:textColorPrimary">@color/text_color_primary</item>
@@ -25,7 +25,7 @@
         <!-- This would set the toolbar's background color,
               but setting this also changes the popup menu's background,
               even if we define popupTheme for our <Toolbar> -->
-         <item name="android:background">@android:color/transparent</item>
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
 </resources>

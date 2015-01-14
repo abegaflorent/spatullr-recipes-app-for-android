@@ -1,7 +1,5 @@
-package com.pongodev.recipesapp;
+package com.pongodev.recipesapp.activities;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,13 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.gc.materialdesign.views.ButtonFloat;
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.adapters.AdapterDetailPager;
 import com.pongodev.recipesapp.fragments.FragmentInfo;
 import com.pongodev.recipesapp.fragments.FragmentSummary;
@@ -36,21 +36,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ActivityDetailFavorites extends ActionBarActivity {
+public class ActivityDetail extends ActionBarActivity {
 
     ImageView imgRecipe;
     TextView txtRecipeName, txtCategory;
 
     LinearLayout lytDetail, lytTitle;
-    ProgressBar prgLoading;
-    ButtonFloat btnUnfavorite;
+    ProgressBarCircularIndeterminate prgLoading;
+    ButtonFloat btnFavorite;
     AdView adView;
     PagerSlidingTabStrip tabs;
     ViewPager pager;
 
     String selectedId;
-    public static String time, minutes, serveFor, persons;
-    public static  String recipeId, categoryId, categoryName, recipeName, cookTime, servings, summary, ingredients, steps, recipeImage;
+    public String recipeId, categoryId, categoryName, recipeName, cookTime, servings, summary, ingredients, steps, recipeImage;
 
 
     DBHelperRecipes dbhelperRecipes;
@@ -58,17 +57,14 @@ public class ActivityDetailFavorites extends ActionBarActivity {
 
     AdapterDetailPager adapterDetailPager;
 
+    InterstitialAd interstitialAd;
+
     List<Fragment> pagerFragments = new ArrayList<Fragment>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_favorites);
-
-        time = getResources().getString(R.string.cook_time);
-        minutes = getResources().getString(R.string.minutes);
-        serveFor = getResources().getString(R.string.serve_for);
-        persons = getResources().getString(R.string.persons);
+        setContentView(R.layout.activity_detail);
 
         Intent i = getIntent();
         selectedId = i.getStringExtra(Utils.ARG_KEY);
@@ -77,26 +73,34 @@ public class ActivityDetailFavorites extends ActionBarActivity {
         // Show the Up button in the action bar.
         // Set up the action bar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_favorite_white_36dp);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
+        prgLoading = (ProgressBarCircularIndeterminate) findViewById(R.id.prgLoading);
         lytDetail = (LinearLayout) findViewById(R.id.lytDetail);
         lytTitle = (LinearLayout) findViewById(R.id.lytTitle);
         imgRecipe = (ImageView) findViewById(R.id.imgRecipe);
         txtRecipeName = (TextView) findViewById(R.id.txtRecipeName);
         txtCategory = (TextView) findViewById(R.id.txtCategory);
-        btnUnfavorite = (ButtonFloat) findViewById(R.id.btnUnfavorite);
+        btnFavorite = (ButtonFloat) findViewById(R.id.btnFavorite);
         adView = (AdView) findViewById(R.id.adView);
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         pager = (ViewPager) findViewById(R.id.pager);
 
-
-
+        interstitialAd = new InterstitialAd(this);
         boolean isAdmobVisible = Utils.admobVisibility(adView, Utils.ARG_ADMOB_VISIBILITY);
-        if(isAdmobVisible)
+        if(isAdmobVisible) {
             Utils.loadAdmob(adView);
+
+            int interstitialTrigger = Utils.loadPreferences(Utils.ARG_TRIGGER, this);
+            Log.d(Utils.ARG_TRIGGER, interstitialTrigger+"");
+            if(interstitialTrigger == Utils.ARG_TRIGGER_VALUE) {
+                Utils.loadAdmobInterstitial(interstitialAd, this);
+                Utils.savePreferences(Utils.ARG_TRIGGER, 0, this);
+            }else{
+                Utils.savePreferences(Utils.ARG_TRIGGER, (interstitialTrigger+1), this);
+            }
+        }
 
 
 
@@ -137,47 +141,21 @@ public class ActivityDetailFavorites extends ActionBarActivity {
 
 
 
-        btnUnfavorite.setOnClickListener(new View.OnClickListener() {
+        btnFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                // Display confirm dialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(ActivityDetailFavorites.this);
-                builder.setTitle(R.string.confirm);
-                builder.setMessage(R.string.confirm_message);
-                builder.setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        boolean result = dbhelperFavorites.deleteRecipeFromFavorites(selectedId);
-                        if (result) {
-                            Toast.makeText(getApplicationContext(), R.string.success_remove, Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                            finish();
-                            /*
-                            Bundle arguments = new Bundle();
-                            FragmentFavorites fragment = new FragmentFavorites();
-                            fragment.setArguments(arguments);
-                            getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.item_container, fragment)
-                                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                                    .commit();
-                            dialog.dismiss();
-                            */
-                        }
+                if(!dbhelperFavorites.isDataAvailable(recipeId)) {
+                    boolean result = dbhelperFavorites.addRecipeToFavorites(recipeId, categoryId, recipeName,
+                            cookTime, servings, summary,
+                            ingredients, steps, recipeImage);
+
+                    if(result){
+                        Toast.makeText(getApplicationContext(), getString(R.string.success_add_data), Toast.LENGTH_SHORT).show();
                     }
-                });
-
-                builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        dialog.dismiss();
-
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                }else{
+                    Toast.makeText(getApplicationContext(), getString(R.string.data_exist), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -190,7 +168,8 @@ public class ActivityDetailFavorites extends ActionBarActivity {
             super.onPreExecute();
             prgLoading.setVisibility(View.VISIBLE);
             lytDetail.setVisibility(View.GONE);
-            btnUnfavorite.setVisibility(View.GONE);
+            lytTitle.setVisibility(View.GONE);
+            btnFavorite.setVisibility(View.GONE);
         }
 
         @Override
@@ -209,12 +188,12 @@ public class ActivityDetailFavorites extends ActionBarActivity {
                     .load(image)
                     .into(imgRecipe);
 
-
             createPager();
 
             prgLoading.setVisibility(View.GONE);
             lytDetail.setVisibility(View.VISIBLE);
-            btnUnfavorite.setVisibility(View.VISIBLE);
+            lytTitle.setVisibility(View.VISIBLE);
+            btnFavorite.setVisibility(View.VISIBLE);
 
         }
     }

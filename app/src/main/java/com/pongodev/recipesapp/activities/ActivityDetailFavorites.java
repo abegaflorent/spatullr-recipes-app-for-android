@@ -1,4 +1,4 @@
-package com.pongodev.recipesapp;
+package com.pongodev.recipesapp.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,13 +14,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.astuetz.PagerSlidingTabStrip;
 import com.gc.materialdesign.views.ButtonFloat;
-import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.adapters.AdapterDetailPager;
 import com.pongodev.recipesapp.fragments.FragmentInfo;
 import com.pongodev.recipesapp.fragments.FragmentSummary;
@@ -34,24 +37,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ActivityDetail extends ActionBarActivity {
+public class ActivityDetailFavorites extends ActionBarActivity {
 
     ImageView imgRecipe;
     TextView txtRecipeName, txtCategory;
 
     LinearLayout lytDetail, lytTitle;
-    ProgressBarCircularIndeterminate prgLoading;
-    ButtonFloat btnFavorite;
+    ProgressBar prgLoading;
+    ButtonFloat btnUnfavorite;
     AdView adView;
     PagerSlidingTabStrip tabs;
     ViewPager pager;
 
     String selectedId;
-    public String recipeId, categoryId, categoryName, recipeName, cookTime, servings, summary, ingredients, steps, recipeImage;
+    public static String time, minutes, serveFor, persons;
+    public static  String recipeId, categoryId, categoryName, recipeName, cookTime, servings, summary, ingredients, steps, recipeImage;
 
 
     DBHelperRecipes dbhelperRecipes;
     DBHelperFavorites dbhelperFavorites;
+
+
+    InterstitialAd interstitialAd;
 
     AdapterDetailPager adapterDetailPager;
 
@@ -60,7 +67,12 @@ public class ActivityDetail extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_detail_favorites);
+
+        time = getResources().getString(R.string.cook_time);
+        minutes = getResources().getString(R.string.minutes);
+        serveFor = getResources().getString(R.string.serve_for);
+        persons = getResources().getString(R.string.persons);
 
         Intent i = getIntent();
         selectedId = i.getStringExtra(Utils.ARG_KEY);
@@ -69,24 +81,37 @@ public class ActivityDetail extends ActionBarActivity {
         // Show the Up button in the action bar.
         // Set up the action bar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_favorite_white_36dp);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        prgLoading = (ProgressBarCircularIndeterminate) findViewById(R.id.prgLoading);
+        prgLoading = (ProgressBar) findViewById(R.id.prgLoading);
         lytDetail = (LinearLayout) findViewById(R.id.lytDetail);
         lytTitle = (LinearLayout) findViewById(R.id.lytTitle);
         imgRecipe = (ImageView) findViewById(R.id.imgRecipe);
         txtRecipeName = (TextView) findViewById(R.id.txtRecipeName);
         txtCategory = (TextView) findViewById(R.id.txtCategory);
-        btnFavorite = (ButtonFloat) findViewById(R.id.btnFavorite);
+        btnUnfavorite = (ButtonFloat) findViewById(R.id.btnUnfavorite);
         adView = (AdView) findViewById(R.id.adView);
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         pager = (ViewPager) findViewById(R.id.pager);
 
 
+
+        interstitialAd = new InterstitialAd(this);
         boolean isAdmobVisible = Utils.admobVisibility(adView, Utils.ARG_ADMOB_VISIBILITY);
-        if(isAdmobVisible)
+        if(isAdmobVisible) {
             Utils.loadAdmob(adView);
+
+            int interstitialTrigger = Utils.loadPreferences(Utils.ARG_TRIGGER, this);
+            Log.d(Utils.ARG_TRIGGER, interstitialTrigger+"");
+            if(interstitialTrigger == Utils.ARG_TRIGGER_VALUE) {
+                Utils.loadAdmobInterstitial(interstitialAd, this);
+                Utils.savePreferences(Utils.ARG_TRIGGER, 0, this);
+            }else{
+                Utils.savePreferences(Utils.ARG_TRIGGER, (interstitialTrigger+1), this);
+            }
+        }
 
 
 
@@ -127,21 +152,36 @@ public class ActivityDetail extends ActionBarActivity {
 
 
 
-        btnFavorite.setOnClickListener(new View.OnClickListener() {
+        btnUnfavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(!dbhelperFavorites.isDataAvailable(recipeId)) {
-                    boolean result = dbhelperFavorites.addRecipeToFavorites(recipeId, categoryId, recipeName,
-                            cookTime, servings, summary,
-                            ingredients, steps, recipeImage);
+                new MaterialDialog.Builder(ActivityDetailFavorites.this)
+                        .title(R.string.confirm)
+                        .content(R.string.confirm_message)
+                        .positiveText(R.string.remove)
+                        .negativeText(R.string.cancel)
+                        .positiveColorRes(R.color.color_primary)
+                        .negativeColorRes(R.color.color_primary)
+                        .callback(new MaterialDialog.ButtonCallback() {
+                            @Override
+                            public void onPositive(MaterialDialog dialog) {
+                                boolean result = dbhelperFavorites.deleteRecipeFromFavorites(selectedId);
+                                if (result) {
+                                    Toast.makeText(getApplicationContext(), R.string.success_remove, Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                    finish();
+                                }
+                            }
 
-                    if(result){
-                        Toast.makeText(getApplicationContext(), getString(R.string.success_add_data), Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Toast.makeText(getApplicationContext(), getString(R.string.data_exist), Toast.LENGTH_SHORT).show();
-                }
+                            @Override
+                            public void onNegative(MaterialDialog dialog) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .show();
+
+
             }
         });
 
@@ -155,7 +195,7 @@ public class ActivityDetail extends ActionBarActivity {
             prgLoading.setVisibility(View.VISIBLE);
             lytDetail.setVisibility(View.GONE);
             lytTitle.setVisibility(View.GONE);
-            btnFavorite.setVisibility(View.GONE);
+            btnUnfavorite.setVisibility(View.GONE);
         }
 
         @Override
@@ -174,12 +214,13 @@ public class ActivityDetail extends ActionBarActivity {
                     .load(image)
                     .into(imgRecipe);
 
+
             createPager();
 
             prgLoading.setVisibility(View.GONE);
             lytDetail.setVisibility(View.VISIBLE);
             lytTitle.setVisibility(View.VISIBLE);
-            btnFavorite.setVisibility(View.VISIBLE);
+            btnUnfavorite.setVisibility(View.VISIBLE);
 
         }
     }

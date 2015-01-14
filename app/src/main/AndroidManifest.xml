@@ -18,7 +18,7 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".ActivitySplash"
+            android:name=".activities.ActivitySplash"
             android:label="@string/app_name"
             android:noHistory="true"
             android:screenOrientation="portrait" >
@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityHome"
+            android:name=".activities.ActivityHome"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
             <meta-data
@@ -37,11 +37,11 @@
                 android:value="com.pongodev.recipesapp.ActivitySearch" />
         </activity>
         <activity
-            android:name=".ActivitySearch"
+            android:name=".activities.ActivitySearch"
             android:label="@string/search_result"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:parentActivityName=".ActivityHome">
+            android:parentActivityName=".activities.ActivityHome">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -56,30 +56,30 @@
             android:authorities="com.pongodev.recipesapp.suggestion.ProviderSuggestion" />
 
         <activity
-            android:name=".ActivityDetail"
+            android:name=".activities.ActivityDetail"
             android:label=""
             android:screenOrientation="portrait"
-            android:parentActivityName=".ActivityHome">
+            android:parentActivityName=".activities.ActivityHome">
         </activity>
         <activity
-            android:name=".ActivityFavorites"
+            android:name=".activities.ActivityFavorites"
             android:label="@string/favorites"
             android:screenOrientation="portrait"
-            android:parentActivityName=".ActivityHome">
+            android:parentActivityName=".activities.ActivityHome">
         </activity>
 
         <activity
-            android:name=".ActivityDetailFavorites"
+            android:name=".activities.ActivityDetailFavorites"
             android:label=""
             android:screenOrientation="portrait"
-            android:parentActivityName=".ActivityFavorites">
+            android:parentActivityName=".activities.ActivityFavorites">
         </activity>
 
         <activity
-            android:name=".ActivityAbout"
+            android:name=".activities.ActivityAbout"
             android:label="@string/about"
             android:screenOrientation="portrait"
-            android:parentActivityName=".ActivityHome">
+            android:parentActivityName=".activities.ActivityHome">
         </activity>
         <!-- Include the AdActivity configChanges and theme. -->
         <activity
@@ -87,9 +87,9 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
         <activity
-            android:name=".ActivityRecipes"
+            android:name=".activities.ActivityRecipes"
             android:screenOrientation="portrait"
-            android:parentActivityName=".ActivityHome">
+            android:parentActivityName=".activities.ActivityHome">
         </activity>
     </application>
 
