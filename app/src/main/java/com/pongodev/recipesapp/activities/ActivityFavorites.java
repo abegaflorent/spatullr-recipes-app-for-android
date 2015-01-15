@@ -32,7 +32,6 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentFavo
         // Show the Up button in the action bar.
         // Set up the action bar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_favorite_white_36dp);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

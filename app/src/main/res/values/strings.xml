@@ -2,21 +2,6 @@
 <resources>
 
     <string name="app_name">Spatullr</string>
-    <string name="name">Application Name</string>
-    <string name="build_version">Build Version</string>
-    <string name="app_version">Version 2.1.0</string>
-    <string name="developer">Developer</string>
-    <string name="developer_name">Pongodev</string>
-    <string name="copyright">Copyright</string>
-    <string name="app_copyright">Copyright 2014 pongodev. All rights reserved</string>
-    <string name="sharing">Sharing</string>
-    <string name="tell_friend">Tell a Friend</string>
-    <string name="tell_friend_summary">Tell your friend about this app</string>
-    <string name="rate_app">Rate</string>
-    <string name="rate_app_summary">Rate this app if you think it is awesome</string>
-    <string name="review">Review</string>
-    <string name="review_app_summary">Tell us your feedback about our app</string>
-    <string name="app_subtitle">Awesome App</string>
     <string name="cook_time">COOK TIME</string>
     <string name="minutes">MIN</string>
     <string name="serve_for">FOR</string>
@@ -55,27 +40,26 @@
         <item>DIRECTIONS</item>
     </string-array>
 
+    <string-array name="about_titles">
+        <item>Application Name</item>
+        <item>Build Version</item>
+        <item>Developer</item>
+        <item>Copyright</item>
+        <item>Tell a Friend</item>
+        <item>Rate</item>
+        <item>Review</item>
+    </string-array>
 
-    <!-- Setting preferences string -->
-    <string name="pref_key_about">pref_key_about</string>
-    <string name="pref_key_app_name">pref_key_app_name</string>
-    <string name="pref_key_developer">pref_key_developer</string>
-    <string name="pref_key_app_version">pref_key_app_version</string>
-    <string name="pref_key_copyright">pref_key_copyright</string>
-    <string name="pref_key_sharing">pref_key_sharing</string>
-    <string name="pref_key_tell_friend">pref_key_tell_friend</string>
-    <string name="pref_key_rate_app">pref_key_rate_app</string>
-    <string name="pref_key_review">pref_key_review</string>
-    <string name="title_item_list">Items</string>
-    <string name="title_item_detail">Item Detail</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_activity_home2">ActivityHome2</string>
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
+    <string-array name="about_summaries">
+        <item>Spatullr</item>
+        <item>Version 2.1.0</item>
+        <item>Pongodev</item>
+        <item>Copyright 2014 pongodev. All rights reserved.</item>
+        <item>Tell your friend about this app.</item>
+        <item>Rate this app if you think it is awesome.</item>
+        <item>Give your feedback about our app.</item>
+    </string-array>
+
+
 
 </resources>

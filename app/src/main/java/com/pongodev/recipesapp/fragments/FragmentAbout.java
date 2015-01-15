@@ -1,77 +1,140 @@
 package com.pongodev.recipesapp.fragments;
 
-import android.content.Intent;
-import android.net.Uri;
+
+import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
+import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.pongodev.recipesapp.R;
+import com.pongodev.recipesapp.activities.ActivityAbout;
+import com.pongodev.recipesapp.adapters.AdapterAbout;
+import com.pongodev.recipesapp.utils.OnTapAboutListener;
 
+import java.util.ArrayList;
 
-public class FragmentAbout extends PreferenceFragment implements Preference.OnPreferenceClickListener{
+/**
+ * Created by taufanerfiyanto on 10/2/14.
+ */
 
-    Preference prefTellFriend, prefRate, prefReview;
+/**
+ * A placeholder fragment containing a simple view.
+ */
+public class FragmentAbout extends Fragment {
 
+    RecyclerView recyclerView;
+    ProgressBarCircularIndeterminate prgLoading;
+    TextView txtEmpty;
 
-    /**
-     * Determines whether to always show the simplified settings UI, where
-     * settings are presented in a single list. When false, settings are shown
-     * as a master/detail two-pane view on tablets. When true, a single pane is
-     * shown on tablets.
-     */
-    private static final boolean ALWAYS_SIMPLE_PREFS = false;
+    AdapterAbout adapterAbout;
+    OnItemSelectedListener mCallback;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    ArrayList<String> titles = new ArrayList<String>();
+    ArrayList<String> summaries = new ArrayList<String>();
 
-        setupSimplePreferencesScreen();
-
-        prefTellFriend = (Preference) findPreference(getString(R.string.pref_key_tell_friend));
-        prefRate = (Preference) findPreference(getString(R.string.pref_key_rate_app));
-        prefReview = (Preference) findPreference(getString(R.string.pref_key_review));
-
-        prefTellFriend.setOnPreferenceClickListener(this);
-        prefRate.setOnPreferenceClickListener(this);
-        prefReview.setOnPreferenceClickListener(this);
-
-
-
+    public interface OnItemSelectedListener {
+        public void onItemSelected(int position);
     }
 
+    /**
+     * The fragment argument representing the section number for this
+     * fragment.
+     */
 
     /**
-     * Shows the simplified settings UI if the device configuration if the
-     * device configuration dictates that a simplified, single-pane UI should be
-     * shown.
+     * Returns a new instance of this fragment for the given section
+     * number.
      */
-    private void setupSimplePreferencesScreen() {
+    public static FragmentAbout newInstance() {
+        FragmentAbout fragment = new FragmentAbout();
 
-        // In the simplified UI, fragments are not used at all and we instead
-        // use the older PreferenceActivity APIs.
-
-        // Add 'general' preferences.
-        addPreferencesFromResource(R.xml.pref_about);
-
+        return fragment;
     }
 
+    public FragmentAbout() {
+    }
 
     @Override
-    public boolean onPreferenceClick(Preference preference) {
-        String key = preference.getKey();
-        if(key.equals(getString(R.string.pref_key_tell_friend))){
-            Intent iShare = new Intent(Intent.ACTION_SEND);
-            iShare.setType("text/plain");
-            iShare.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.subject));
-            iShare.putExtra(Intent.EXTRA_TEXT, getString(R.string.message)+" "+getString(R.string.google_play_url));
-            startActivity(Intent.createChooser(iShare, getString(R.string.share)));
-        }else if(key.equals(getString(R.string.pref_key_rate_app)) || key.equals(getString(R.string.pref_key_review))){
-            Intent iRate = new Intent(Intent.ACTION_VIEW);
-            iRate.setData(Uri.parse(getString(R.string.google_play_url)));
-            startActivity(iRate);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_about, container, false);
+
+        setRetainInstance(true);
+
+        // Connect view objects and view id on xml.
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
+
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+
+
+        new syncGetData().execute();
+
+
+        adapterAbout = new AdapterAbout(getActivity());
+
+
+        adapterAbout.setOnTapAboutListener(new OnTapAboutListener() {
+            @Override
+            public void onTapView(int position) {
+                mCallback.onItemSelected(position);
+            }
+        });
+
+        return rootView;
+    }
+
+    public class syncGetData extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
         }
-        return true;
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            getDataFromResources();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+
+            adapterAbout.updateList(titles, summaries);
+            recyclerView.setAdapter(adapterAbout);
+        }
+    }
+
+    public void getDataFromResources(){
+
+        for(int i = 0;i < ActivityAbout.titles.length;i++){
+            titles.add(ActivityAbout.titles[i]);
+            summaries.add(ActivityAbout.summaries[i]);
+        }
+
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception.
+        try {
+            mCallback = (OnItemSelectedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnRecipeSelectedListener");
+        }
     }
 
 }

@@ -105,6 +105,8 @@ public class ActivityDetail extends ActionBarActivity {
 
 
 
+
+
         dbhelperRecipes = new DBHelperRecipes(this);
         dbhelperFavorites = new DBHelperFavorites(this);
 
@@ -289,6 +291,19 @@ public class ActivityDetail extends ActionBarActivity {
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.open_main, R.anim.close_next);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            if (hasFocus) {
+                getWindow().getDecorView()
+                        .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            }
+        }
     }
 
 }

@@ -5,10 +5,6 @@
     tools:context="com.pongodev.recipesapp.activities.ActivitySplash">
 
 
-
-    <include layout="@layout/toolbar" />
-
-
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"

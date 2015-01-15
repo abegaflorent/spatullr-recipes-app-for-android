@@ -90,7 +90,8 @@
         android:layout_centerHorizontal="true"
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
     </com.google.android.gms.ads.AdView>
 
     <com.gc.materialdesign.views.ButtonFloat
@@ -102,6 +103,7 @@
         android:background="@color/color_primary"
         android:layout_above="@+id/adView"
         android:layout_alignParentRight="true"
+        android:visibility="gone"
         materialdesign:iconDrawable="@drawable/ic_favorite_outline_white_36dp" />
 </RelativeLayout>
 

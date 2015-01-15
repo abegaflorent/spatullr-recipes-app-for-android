@@ -2,20 +2,20 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include layout="@layout/toolbar" />
 
-    <fragment
-        android:id="@+id/item_list"
-        android:name="com.pongodev.recipesapp.fragments.FragmentAbout"
+    <FrameLayout
+        android:id="@+id/item_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        tools:context="com.pongodev.recipesapp.activities.ActivityAbout"
+        tools:context=".ActivityAbout"
+        tools:ignore="MergeRootFrame"
         android:layout_below="@+id/toolbar"/>
+
 </RelativeLayout>
 
 

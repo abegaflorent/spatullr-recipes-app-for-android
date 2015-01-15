@@ -2,6 +2,7 @@ package com.pongodev.recipesapp.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.view.View;
 
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -38,10 +39,20 @@ public class Utils {
     public static final int ARG_GONE = 8;
     public static final int ARG_VISIBLE = 0;
 
-    public static void loadAdmob(AdView ad){
-        AdRequest adRequest = new AdRequest.Builder().
+    public static void loadAdmob(final AdView ad){
+        final AdRequest adRequest = new AdRequest.Builder().
                 addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
         ad.loadAd(adRequest);
+
+        ad.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                if (ad != null) {
+                    ad.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     public static boolean admobVisibility(AdView ad, int parameter){
