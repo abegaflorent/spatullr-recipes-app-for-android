@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- app main color (toolbar color) configuration -->
     <color name="color_primary">#D32F2F</color>
     <color name="color_primary_dark">#C62828</color>
     <color name="text_color_primary">#FFFFFF</color>
@@ -16,7 +17,6 @@
     <color name="text_subtitle_color">#FFFFFF</color>
     <color name="text_content_color">#212121</color>
     <color name="detail_background_color">#FFFFFF</color>
-    <color name="splash_background_color">#D32F2F</color>
     <color name="tab_background_color">#E6E8E9</color>
     <color name="list_background_color">#E6E8E9</color>
     <color name="background_gradient_color_start">#00000000</color>

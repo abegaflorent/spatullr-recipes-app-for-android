@@ -14,7 +14,7 @@ import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.adapters.AdapterCategories;
 import com.pongodev.recipesapp.utils.DBHelperRecipes;
-import com.pongodev.recipesapp.utils.OnTapListener;
+import com.pongodev.recipesapp.listeners.OnTapListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -75,7 +75,7 @@ public class FragmentCategories extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_categories, container, false);
 
-        setRetainInstance(true);
+        //setRetainInstance(true);
 
         // Connect view objects and view id on xml.
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);

@@ -13,10 +13,12 @@ import com.pongodev.recipesapp.R;
 
 public class ActivitySplash extends ActionBarActivity {
 
+    // Create variable to handle progress and set it to 0.
     private int progress = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Configuration in Android API below 21 to set window to full screen.
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -24,6 +26,7 @@ public class ActivitySplash extends ActionBarActivity {
 
         setContentView(R.layout.activity_splash);
 
+        // Create asynctask to handle splash screen.
         new Loading().execute();
     }
 
@@ -46,11 +49,14 @@ public class ActivitySplash extends ActionBarActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            // When progress finished, open Home screen.
             Intent i = new Intent(getApplicationContext(), ActivityHome.class);
             startActivity(i);
         }
     }
 
+
+    // Configuration in Android API 21 to set window to full screen.
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);

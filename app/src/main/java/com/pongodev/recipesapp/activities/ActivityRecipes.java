@@ -16,8 +16,6 @@ import com.pongodev.recipesapp.utils.Utils;
  */
 public class ActivityRecipes extends ActionBarActivity implements FragmentRecipes.OnRecipeSelectedListener {
 
-    private String keyword;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

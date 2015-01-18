@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.makeramen.RoundedImageView;
 import com.pongodev.recipesapp.R;
-import com.pongodev.recipesapp.utils.OnTapListener;
+import com.pongodev.recipesapp.listeners.OnTapListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

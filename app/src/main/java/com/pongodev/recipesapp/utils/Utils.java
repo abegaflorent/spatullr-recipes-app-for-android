@@ -27,17 +27,19 @@ public class Utils {
     public static final String ARG_SERVINGS = "servings";
     public static final String ARG_SUMMARY = "summary";
     public static final String ARG_INFO = "info";
-
+    public static final String ARG_PARENT_ACTIVITY = "parent_activity";
+    public static final String ARG_ACTIVITY_HOME = "activities.ActivityHome";
+    public static final String ARG_ACTIVITY_SEARCH = "activities.ActivitySearch";
+    public static final String ARG_ACTIVITY_FAVORITES = "activities.ActivityFavorites";
     public static final String ARG_TRIGGER = "trigger";
+    public static final int ARG_GONE = 8;
+
+    // Configurable parameters. you can configure these parameter.
+    // For every recipe detail you want to display interstitial ad
     public static final int ARG_TRIGGER_VALUE = 3;
-
-
-
     // Admob visibility parameter. set 0 to show admob and 8 to hide.
     public static final int ARG_ADMOB_VISIBILITY = 0;
 
-    public static final int ARG_GONE = 8;
-    public static final int ARG_VISIBLE = 0;
 
     public static void loadAdmob(final AdView ad){
         final AdRequest adRequest = new AdRequest.Builder().
@@ -84,7 +86,6 @@ public class Utils {
                 if (interstitialAd.isLoaded()) {
                     interstitialAd.show();
                 }
-
             }
 
             @Override

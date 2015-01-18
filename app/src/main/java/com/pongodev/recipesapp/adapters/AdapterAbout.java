@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.pongodev.recipesapp.R;
-import com.pongodev.recipesapp.utils.OnTapAboutListener;
+import com.pongodev.recipesapp.listeners.OnTapAboutListener;
 
 import java.util.ArrayList;
 

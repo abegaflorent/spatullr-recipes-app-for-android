@@ -31,10 +31,11 @@
         <activity
             android:name=".activities.ActivityHome"
             android:label="@string/app_name"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" >
             <meta-data
                 android:name="android.app.default_searchable"
-                android:value="com.pongodev.recipesapp.ActivitySearch" />
+                android:value="com.pongodev.recipesapp.activities.ActivitySearch" />
         </activity>
         <activity
             android:name=".activities.ActivitySearch"
@@ -46,33 +47,39 @@
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
 
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ActivityHome" />
+
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
 
         <provider
-            android:name=".suggestion.ProviderSuggestion"
-            android:authorities="com.pongodev.recipesapp.suggestion.ProviderSuggestion" />
+            android:name=".providers.ProviderSuggestion"
+            android:authorities="com.pongodev.recipesapp.providers.ProviderSuggestion" />
 
         <activity
             android:name=".activities.ActivityDetail"
             android:label=""
             android:screenOrientation="portrait"
             android:parentActivityName=".activities.ActivityHome">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ActivityHome" />
         </activity>
         <activity
             android:name=".activities.ActivityFavorites"
             android:label="@string/favorites"
             android:screenOrientation="portrait"
             android:parentActivityName=".activities.ActivityHome">
-        </activity>
-
-        <activity
-            android:name=".activities.ActivityDetailFavorites"
-            android:label=""
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.ActivityFavorites">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ActivityHome" />
         </activity>
 
         <activity
@@ -80,6 +87,10 @@
             android:label="@string/about"
             android:screenOrientation="portrait"
             android:parentActivityName=".activities.ActivityHome">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ActivityHome" />
         </activity>
         <!-- Include the AdActivity configChanges and theme. -->
         <activity
@@ -90,6 +101,10 @@
             android:name=".activities.ActivityRecipes"
             android:screenOrientation="portrait"
             android:parentActivityName=".activities.ActivityHome">
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ActivityHome" />
         </activity>
     </application>
 

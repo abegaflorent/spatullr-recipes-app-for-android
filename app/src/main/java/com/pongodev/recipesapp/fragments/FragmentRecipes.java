@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.google.android.gms.ads.AdView;
@@ -19,7 +20,7 @@ import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.adapters.AdapterRecipes;
 import com.pongodev.recipesapp.utils.DBHelperFavorites;
 import com.pongodev.recipesapp.utils.DBHelperRecipes;
-import com.pongodev.recipesapp.utils.OnTapListener;
+import com.pongodev.recipesapp.listeners.OnTapListener;
 import com.pongodev.recipesapp.utils.Utils;
 
 import java.io.IOException;
@@ -48,8 +49,8 @@ public class FragmentRecipes extends Fragment {
     ArrayList<ArrayList<Object>> data;
 
 
-    private String key;
-    private String activePage;
+    private String currentKey = "2";
+    private String activePage = Utils.ARG_CATEGORY;
 
     private ArrayList<String> recipeIds = new ArrayList<String>();
     private ArrayList<String> recipeNames = new ArrayList<String>();
@@ -80,12 +81,40 @@ public class FragmentRecipes extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Toast.makeText(getActivity(), "onSaveInstanceState executed", Toast.LENGTH_SHORT).show();
+
+        // save the current article selection in case we need to recreate the fragment
+        outState.putString(Utils.ARG_KEY, currentKey);
+        outState.putString(Utils.ARG_PAGE, Utils.ARG_CATEGORY);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Toast.makeText(getActivity(), "onCreate executed", Toast.LENGTH_SHORT).show();
+
+        if (savedInstanceState != null) {
+            currentKey = savedInstanceState.getString(Utils.ARG_KEY);
+            activePage = savedInstanceState.getString(Utils.ARG_PAGE);
+            Toast.makeText(getActivity(), "onCreate savedInstanceState currentKey:"+currentKey, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recipes, container, false);
 
-        setRetainInstance(true);
+        Toast.makeText(getActivity(), "onCreateView executed", Toast.LENGTH_SHORT).show();
+        //setRetainInstance(true);
 
+        if (savedInstanceState != null) {
+            currentKey = savedInstanceState.getString(Utils.ARG_KEY);
+            activePage = savedInstanceState.getString(Utils.ARG_PAGE);
+            Toast.makeText(getActivity(), "savedInstanceState currentKey:"+currentKey, Toast.LENGTH_SHORT).show();
+        }
 
         // Connect view objects and view id on xml.
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
@@ -93,14 +122,13 @@ public class FragmentRecipes extends Fragment {
         adView = (AdView) rootView.findViewById(R.id.adView);
         txtEmpty = (TextView) rootView.findViewById(R.id.txtEmpty);
 
-        boolean isAdmobVisible = Utils.admobVisibility(adView, Utils.ARG_ADMOB_VISIBILITY);
-        if(isAdmobVisible)
-            Utils.loadAdmob(adView);
-
-
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
+
+        boolean isAdmobVisible = Utils.admobVisibility(adView, Utils.ARG_ADMOB_VISIBILITY);
+        if(isAdmobVisible)
+            Utils.loadAdmob(adView);
 
 
         dbhelperRecipes = new DBHelperRecipes(getActivity());
@@ -115,17 +143,6 @@ public class FragmentRecipes extends Fragment {
 
         dbhelperRecipes.openDataBase();
         dbhelperFavorites.openDataBase();
-
-
-        if (getArguments().containsKey(Utils.ARG_KEY)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-
-            key = getArguments().getString(Utils.ARG_KEY);
-            activePage = getArguments().getString(Utils.ARG_PAGE);
-            new syncGetData().execute();
-        }
 
 
 
@@ -143,6 +160,35 @@ public class FragmentRecipes extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        Toast.makeText(getActivity(), "onStart executed", Toast.LENGTH_SHORT).show();
+        // during startup, check if there are arguments passed to the fragment.
+        // onStart is a good place to do this because the layout has already been
+        // applied to the fragment at this point so we can safely call the method
+        // below that sets the article text.
+
+        Bundle args = getArguments();
+        if (args != null) {
+            // set article based on argument passed in
+            updateRecipes(args.getString(Utils.ARG_KEY), args.getString(Utils.ARG_PAGE));
+        } else if (!currentKey.equals("")) {
+            // set article based on saved instance state defined during onCreateView
+            updateRecipes(currentKey, activePage);
+        }
+    }
+
+    public void updateRecipes(String key, String page){
+
+        dbhelperRecipes.openDataBase();
+        dbhelperFavorites.openDataBase();
+        currentKey = key;
+        activePage = page;
+        new syncGetData().execute();
+    }
+
     public class syncGetData extends AsyncTask<Void, Void, Void>{
 
         @Override
@@ -150,11 +196,16 @@ public class FragmentRecipes extends Fragment {
             super.onPreExecute();
             prgLoading.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
+            recipeIds.clear();
+            recipeNames.clear();
+            cookTimes.clear();
+            servings.clear();
+            images.clear();
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            getDataFromDatabase(key);
+            getDataFromDatabase(currentKey);
             return null;
         }
 
@@ -171,6 +222,8 @@ public class FragmentRecipes extends Fragment {
                 adapterRecipes.updateList(recipeIds, recipeNames, cookTimes, servings, images);
             }
             recyclerView.setAdapter(adapterRecipes);
+
+
         }
     }
 
@@ -215,6 +268,9 @@ public class FragmentRecipes extends Fragment {
                     + " must implement OnRecipeSelectedListener");
         }
     }
+
+
+
 
     /** Called when leaving the activity */
     @Override

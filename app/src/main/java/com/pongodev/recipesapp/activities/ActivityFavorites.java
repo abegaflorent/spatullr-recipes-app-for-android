@@ -8,49 +8,46 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.pongodev.recipesapp.R;
-import com.pongodev.recipesapp.fragments.FragmentFavorites;
+import com.pongodev.recipesapp.fragments.FragmentRecipes;
 import com.pongodev.recipesapp.utils.DBHelperFavorites;
 import com.pongodev.recipesapp.utils.Utils;
 
 import java.io.IOException;
 
-/**
- * Created by taufanerfiyanto on 11/14/14.
- */
-public class ActivityFavorites extends ActionBarActivity implements FragmentFavorites.OnRecipeSelectedListener {
+public class ActivityFavorites extends ActionBarActivity implements FragmentRecipes.OnRecipeSelectedListener {
 
-    private String keyword;
+    // Create instance of database helper.
     DBHelperFavorites dbhelperFavorites;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-
-        // Show the Up button in the action bar.
-        // Set up the action bar.
+        // Set up the toolbar.
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // Create object of database helper.
         dbhelperFavorites = new DBHelperFavorites(this);
 
+        // Create favorites database.
         try {
             dbhelperFavorites.createDataBase();
         }catch(IOException ioe){
             throw new Error("Unable to create database");
         }
 
+        // Open favorites database
         dbhelperFavorites.openDataBase();
 
         if (savedInstanceState == null) {
-            // Create the detail fragment and add it to the activity
+            // Create the recipes fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
             arguments.putString(Utils.ARG_PAGE, Utils.ARG_FAVORITES);
-            FragmentFavorites fragment = new FragmentFavorites();
+            FragmentRecipes fragment = new FragmentRecipes();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.item_container, fragment)
@@ -58,6 +55,7 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentFavo
                     .commit();
         }
 
+        // Handle item menu in toolbar.
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
@@ -69,16 +67,16 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentFavo
                     default:
                         return true;
                 }
-                //return true;
             }
         });
     }
 
     @Override
-    public void onRecipeSelected(String ID, String Action) {
-        Intent detailIntent = new Intent(getApplicationContext(), ActivityDetailFavorites.class);
+    public void onRecipeSelected(String ID, String CategoryName) {
+        Intent detailIntent = new Intent();
         detailIntent.putExtra(Utils.ARG_KEY, ID);
-        startActivity(detailIntent);
+        detailIntent.putExtra(Utils.ARG_PARENT_ACTIVITY, Utils.ARG_ACTIVITY_FAVORITES);
+        startActivity(detailIntent.setClass(this, ActivityDetail.class));
         overridePendingTransition(R.anim.open_next, R.anim.close_main);
     }
 
@@ -100,7 +98,7 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentFavo
 
         Bundle arguments = new Bundle();
         arguments.putString(Utils.ARG_PAGE, Utils.ARG_FAVORITES);
-        FragmentFavorites fragment = new FragmentFavorites();
+        FragmentRecipes fragment = new FragmentRecipes();
         fragment.setArguments(arguments);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.item_container, fragment)

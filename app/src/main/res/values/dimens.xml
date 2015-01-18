@@ -1,31 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="row_margin">10dp</dimen>
-    <dimen name="row_content_padding">10dp</dimen>
-    <dimen name="border">1dp</dimen>
+    <!-- row dimen configuration -->
     <dimen name="divider_height">1dp</dimen>
     <dimen name="thumb_width">80dp</dimen>
     <dimen name="thumb_height">80dp</dimen>
     <dimen name="row_padding">16dp</dimen>
     <dimen name="view_margin_left">110dp</dimen>
-    <dimen name="margin_content">16dp</dimen>
-
-    <dimen name="progress_width">32dp</dimen>
-    <dimen name="progress_height">32dp</dimen>
-    <dimen name="card_elevation">0dp</dimen>
-
-
-    <dimen name="margin_content_top">30dp</dimen>
-    <dimen name="padding_content_left">5dp</dimen>
-    <dimen name="line_spacing">5dp</dimen>
-    <dimen name="margin_title_bottom">20dp</dimen>
-    <dimen name="margin_image_bottom">25dp</dimen>
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="navigation_drawer_width">240dp</dimen>
-
-    <!-- row dimen configuration -->
 
     <!-- content dimen configuration -->
     <dimen name="image_height">250dp</dimen>
@@ -33,4 +14,11 @@
     <dimen name="text_subtitle_detail_size">20sp</dimen>
     <dimen name="text_content_size">16sp</dimen>
     <dimen name="padding_content">30dp</dimen>
+    <dimen name="margin_content_top">30dp</dimen>
+    <dimen name="padding_content_left">5dp</dimen>
+    <dimen name="line_spacing">5dp</dimen>
+    <dimen name="margin_content">16dp</dimen>
+    <dimen name="progress_width">32dp</dimen>
+    <dimen name="progress_height">32dp</dimen>
+    <dimen name="card_elevation">0dp</dimen>
 </resources>

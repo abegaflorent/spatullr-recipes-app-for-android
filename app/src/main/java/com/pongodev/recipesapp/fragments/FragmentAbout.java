@@ -16,7 +16,7 @@ import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.activities.ActivityAbout;
 import com.pongodev.recipesapp.adapters.AdapterAbout;
-import com.pongodev.recipesapp.utils.OnTapAboutListener;
+import com.pongodev.recipesapp.listeners.OnTapAboutListener;
 
 import java.util.ArrayList;
 

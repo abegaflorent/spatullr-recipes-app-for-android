@@ -8,10 +8,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.fragments.FragmentRecipes;
-import com.pongodev.recipesapp.suggestion.ProviderSuggestion;
+import com.pongodev.recipesapp.providers.ProviderSuggestion;
 import com.pongodev.recipesapp.utils.Utils;
 
 /**
@@ -33,6 +34,7 @@ public class ActivitySearch extends ActionBarActivity implements FragmentRecipes
             SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
                     ProviderSuggestion.AUTHORITY, ProviderSuggestion.MODE);
             suggestions.saveRecentQuery(keyword, null);
+            Toast.makeText(this, keyword,Toast.LENGTH_SHORT).show();
         }
         setContentView(R.layout.activity_search);
 
@@ -80,6 +82,7 @@ public class ActivitySearch extends ActionBarActivity implements FragmentRecipes
     public void onRecipeSelected(String ID, String CategoryName) {
         Intent detailIntent = new Intent();
         detailIntent.putExtra(Utils.ARG_KEY, ID);
+        detailIntent.putExtra(Utils.ARG_PARENT_ACTIVITY, Utils.ARG_ACTIVITY_SEARCH);
         startActivity(detailIntent.setClass(this, ActivityDetail.class));
         overridePendingTransition(R.anim.open_next, R.anim.close_main);
     }

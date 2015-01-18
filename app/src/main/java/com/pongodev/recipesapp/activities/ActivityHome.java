@@ -36,12 +36,6 @@ import com.pongodev.recipesapp.utils.Utils;
 public class ActivityHome extends ActionBarActivity
         implements FragmentCategories.OnCategorySelectedListener, FragmentRecipes.OnRecipeSelectedListener {
 
-    /**
-     * Whether or not the activity is in two-pane mode, i.e. running on a tablet
-     * device.
-     */
-    private boolean mTwoPane;
-
     Toolbar toolbar;
 
     @Override
@@ -49,11 +43,12 @@ public class ActivityHome extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Set up the action bar.
+        // Set up the toolbar.
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_logo);
 
+        // Handle item menu in toolbar.
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
@@ -61,12 +56,13 @@ public class ActivityHome extends ActionBarActivity
                     case R.id.menuSearch:
                         return true;
                     case R.id.menuFavorites:
+                        // Open Favorites screen.
                         Intent favoritesIntent = new Intent(getApplicationContext(), ActivityFavorites.class);
                         startActivity(favoritesIntent);
                         overridePendingTransition(R.anim.open_next, R.anim.close_main);
                         return true;
                     case R.id.menuAbout:
-                        // Open About screen.
+                        // Open about screen.
                         Intent aboutIntent = new Intent(getApplicationContext(), ActivityAbout.class);
                         startActivity(aboutIntent);
                         overridePendingTransition(R.anim.open_next, R.anim.close_main);
@@ -74,24 +70,30 @@ public class ActivityHome extends ActionBarActivity
                     default:
                         return true;
                 }
-                //return true;
             }
         });
 
 
+        // If app run in single pane layout.
+        if (findViewById(R.id.item_container) != null) {
 
-        if (findViewById(R.id.item_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-large and
-            // res/values-sw600dp). If this view is present, then the
-            // activity should be in two-pane mode.
-            mTwoPane = true;
+            // However, if we're being restored from a previous state,
+            // then we don't need to do anything and should return or else
+            // we could end up with overlapping fragments.
+            if (savedInstanceState != null) {
+                return;
+            }
 
-            // In two-pane mode, list items should be given the
-            // 'activated' state when touched.
-            ((FragmentCategories) getSupportFragmentManager()
-                    .findFragmentById(R.id.item_list))
-                    .setActivateOnItemClick(true);
+            // Create an instance of FragmentCategories.
+            FragmentCategories fragCategory = new FragmentCategories();
+
+            // In case this activity was started with special instructions from an Intent,
+            // pass the Intent's extras to the fragment as arguments.
+            fragCategory.setArguments(getIntent().getExtras());
+
+            // Add the fragment to the 'item_container' FrameLayout.
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.item_container, fragCategory).commit();
         }
 
         // TODO: If exposing deep links into your app, handle intents here.
@@ -104,39 +106,46 @@ public class ActivityHome extends ActionBarActivity
     @Override
     public void onCategorySelected(String ID, String CategoryName) {
 
-        if (mTwoPane) {
-            // In two-pane mode, show the detail view in this activity by
-            // adding or replacing the detail fragment using a
-            // fragment transaction.
+        // Create an instance of FragmentRecipes
+        FragmentRecipes fragRecipes = (FragmentRecipes)
+                getSupportFragmentManager().findFragmentById(R.id.item_detail_container);
 
-            Bundle arguments = new Bundle();
-            arguments.putString(Utils.ARG_KEY, ID);
-            arguments.putString(Utils.ARG_PAGE, Utils.ARG_CATEGORY);
-            FragmentRecipes fragment = new FragmentRecipes();
-            fragment.setArguments(arguments);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.item_detail_container, fragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    .addToBackStack(null)
-                    .commit();
+        if (fragRecipes != null) {
+            // In two-pane mode, show the recipes list in this activity by
+            // adding or replacing the FragmentRecipes using a
+            // fragment transaction.
+            fragRecipes.updateRecipes(ID, Utils.ARG_CATEGORY);
 
         } else {
-            // In single-pane mode, simply start the detail activity
-            // for the selected item ID.
-            Intent recipesIntent = new Intent(this, ActivityRecipes.class);
-            recipesIntent.putExtra(Utils.ARG_KEY, ID);
-            recipesIntent.putExtra(Utils.ARG_PAGE, Utils.ARG_CATEGORY);
-            recipesIntent.putExtra(Utils.ARG_CATEGORY, CategoryName);
-            startActivity(recipesIntent);
-            overridePendingTransition(R.anim.open_next, R.anim.close_main);
+            // If the fragRecipes is not available, we're in the one-pane layout and must swap frags...
+            // create instance of FragmentRecipes and give it an argument for the selected article
+            FragmentRecipes fragment = new FragmentRecipes();
+            Bundle args = new Bundle();
+            args.putString(Utils.ARG_KEY, ID);
+            args.putString(Utils.ARG_PAGE, Utils.ARG_CATEGORY);
+            args.putString(Utils.ARG_CATEGORY, CategoryName);
+            fragment.setArguments(args);
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+            // Replace whatever is in the item_container view with this fragment,
+            // and add the transaction to the back stack so the user can navigate back
+            transaction.replace(R.id.item_container, fragment);
+            transaction.addToBackStack(null);
+            transaction.setTransition(FragmentTransaction.TRANSIT_UNSET);
+
+            // Commit the transaction.
+            transaction.commit();
+
         }
+
     }
 
     @Override
     public void onRecipeSelected(String ID, String CategoryName) {
-        Intent detailIntent = new Intent(this, ActivityDetail.class);
+        // When recipe item is selected, go to Detail screen.
+        Intent detailIntent = new Intent(getApplicationContext(), ActivityDetail.class);
         detailIntent.putExtra(Utils.ARG_KEY, ID);
-        //detailIntent.putExtra(Utils.ARG_PARENT_ACTIVITY, Utils.ARG_ACTIVITY_HOME);
+        detailIntent.putExtra(Utils.ARG_PARENT_ACTIVITY, Utils.ARG_ACTIVITY_HOME);
         startActivity(detailIntent.setClass(this, ActivityDetail.class));
         overridePendingTransition(R.anim.open_next, R.anim.close_main);
     }
@@ -146,12 +155,12 @@ public class ActivityHome extends ActionBarActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
 
-        // get the SearchView and set the searchable configuration
+        // Get the SearchView and set the searchable configuration.
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.menuSearch).getActionView();
-        // assumes current activity is the searchable activity
+        // Assumes current activity is the searchable activity.
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        // do not iconify the widget; expand it by default
+        // Do not iconify the widget; expand it by default.
         searchView.setIconifiedByDefault(false);
 
         return true;
