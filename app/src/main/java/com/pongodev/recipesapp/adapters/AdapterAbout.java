@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class AdapterAbout extends RecyclerView.Adapter<AdapterAbout.ViewHolder>
 {
+    // Create arraylist variables to store data.
     private final ArrayList<String> titles;
     private final ArrayList<String> summaries;
     private OnTapAboutListener onTapAboutListener;
@@ -54,7 +55,7 @@ public class AdapterAbout extends RecyclerView.Adapter<AdapterAbout.ViewHolder>
             }
         });
 
-        // set data to textview and imageview
+        // Set data to textview
         viewHolder.txtTitle.setText(titles.get(position));
         viewHolder.txtSummary.setText(summaries.get(position));
 
@@ -73,12 +74,13 @@ public class AdapterAbout extends RecyclerView.Adapter<AdapterAbout.ViewHolder>
         public ViewHolder(View v)
         {
             super(v);
-            // connect views object and views id on xml
+            // Connect views object and views id on xml.
             txtTitle = (TextView) v.findViewById(R.id.txtTitle);
             txtSummary = (TextView) v.findViewById(R.id.txtSubTitle);
         }
     }
 
+    // Update data to item list.
     public void updateList(
             ArrayList<String> titles,
             ArrayList<String> summaries)

@@ -13,9 +13,9 @@ import com.pongodev.recipesapp.utils.Utils;
 
 public class FragmentInfo extends Fragment {
 
+    // Create objects of views.
     WebView webInfo;
 
-    private int position;
     private String info;
 
     String htmlFormat = "<body bgcolor=\"#FBFBFB\">" +
@@ -43,6 +43,7 @@ public class FragmentInfo extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_info,container,false);
         webInfo = (WebView) rootView.findViewById(R.id.webInfo);
 
+        // Load value to webview.
         webInfo.loadData(htmlFormat.replace(Utils.ARG_TAG_CONTENT, info), "text/html", "UTF-8");
 
         return rootView;

@@ -19,43 +19,30 @@ import com.pongodev.recipesapp.listeners.OnTapListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by taufanerfiyanto on 10/2/14.
- */
-
-/**
- * A placeholder fragment containing a simple view.
- */
 public class FragmentCategories extends Fragment {
 
+    // Create objects of views.
     RecyclerView recyclerView;
     ProgressBarCircularIndeterminate prgLoading;
 
+    // Create instance of database helper.
     DBHelperRecipes dbhelper;
 
+    // Create instance of adapter.
     AdapterCategories adapterCategories;
+
     OnCategorySelectedListener mCallback;
 
     ArrayList<ArrayList<Object>> data;
 
+    // Create arraylist variables to store data.
     private ArrayList<String> categoryIds = new ArrayList<String>();
     private ArrayList<String> categoryNames = new ArrayList<String>();
 
-    public void setActivateOnItemClick(boolean activateOnItemClick) {
-        // When setting CHOICE_MODE_SINGLE, ListView will automatically
-        // give items the 'activated' state when touched.
-        }
-
-
-    // Create interface listener
+    // Create interface listener.
     public interface OnCategorySelectedListener{
         public void onCategorySelected(String ID, String CategoryName);
     }
-
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -75,26 +62,25 @@ public class FragmentCategories extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_categories, container, false);
 
-        //setRetainInstance(true);
-
         // Connect view objects and view id on xml.
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recycler_view);
         prgLoading = (ProgressBarCircularIndeterminate) rootView.findViewById(R.id.prgLoading);
-
 
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
+        // Create object of database helpers.
         dbhelper = new DBHelperRecipes(getActivity());
 
+        // Create database of recipes.
         try {
             dbhelper.createDataBase();
         }catch(IOException ioe){
             throw new Error("Unable to create database");
         }
 
-
+        // Open recipes database.
         dbhelper.openDataBase();
 
         new syncGetData().execute();
@@ -119,6 +105,8 @@ public class FragmentCategories extends Fragment {
             super.onPreExecute();
             prgLoading.setVisibility(View.VISIBLE);
             recyclerView.setVisibility(View.GONE);
+            categoryIds.clear();
+            categoryNames.clear();
         }
 
         @Override
@@ -139,9 +127,9 @@ public class FragmentCategories extends Fragment {
         }
     }
 
+    // Get data from database and store to arraylist variables.
     public void getDataFromDatabase(){
         data = dbhelper.getAllCategoriesData();
-
 
         for(int i = 0; i< data.size(); i++){
             ArrayList<Object> row = data.get(i);

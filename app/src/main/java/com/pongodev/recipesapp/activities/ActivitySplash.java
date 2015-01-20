@@ -55,7 +55,6 @@ public class ActivitySplash extends ActionBarActivity {
         }
     }
 
-
     // Configuration in Android API 21 to set window to full screen.
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

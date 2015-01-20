@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class AdapterCategories extends RecyclerView.Adapter<AdapterCategories.ViewHolder>
 {
+    // Create arraylist variables to store data.
     private final ArrayList<String> categoryIds;
     private final ArrayList<String> categoryNames;
     private OnTapListener onTapListener;
@@ -52,8 +53,8 @@ public class AdapterCategories extends RecyclerView.Adapter<AdapterCategories.Vi
                     onTapListener.onTapView(categoryIds.get(position), categoryNames.get(position));
             }
         });
-        //       viewHolder.textView.setText(textArrayList.get(i));
-        // set data to textview and imageview
+
+        // Set data to textview.
         viewHolder.txtCategory.setText(categoryNames.get(position));
 
     }
@@ -71,11 +72,12 @@ public class AdapterCategories extends RecyclerView.Adapter<AdapterCategories.Vi
         public ViewHolder(View v)
         {
             super(v);
-            // connect views object and views id on xml
+            // Connect views object and views id on xml.
             txtCategory = (TextView) v.findViewById(R.id.txtCategory);
         }
     }
 
+    // Update data to item list.
     public void updateList(
             ArrayList<String> categoryIds,
             ArrayList<String> categoryNames)

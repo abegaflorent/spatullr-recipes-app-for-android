@@ -12,27 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.google.android.gms.ads.AdView;
 import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.adapters.AdapterRecipes;
+import com.pongodev.recipesapp.listeners.OnTapListener;
 import com.pongodev.recipesapp.utils.DBHelperFavorites;
 import com.pongodev.recipesapp.utils.DBHelperRecipes;
-import com.pongodev.recipesapp.listeners.OnTapListener;
 import com.pongodev.recipesapp.utils.Utils;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
- * Created by taufanerfiyanto on 10/2/14.
- */
-
-/**
- * A placeholder fragment containing a simple view.
- */
 public class FragmentRecipes extends Fragment {
 
     RecyclerView recyclerView;
@@ -40,6 +32,7 @@ public class FragmentRecipes extends Fragment {
     TextView txtEmpty;
     AdView adView;
 
+    // Create instance of database helper.
     DBHelperRecipes dbhelperRecipes;
     DBHelperFavorites dbhelperFavorites;
     AdapterRecipes adapterRecipes;
@@ -48,10 +41,10 @@ public class FragmentRecipes extends Fragment {
 
     ArrayList<ArrayList<Object>> data;
 
-
-    private String currentKey = "2";
+    private String currentKey = Utils.ARG_DEFAULT_CATEGORY_ID;
     private String activePage = Utils.ARG_CATEGORY;
 
+    // Create arraylist variables to store data.
     private ArrayList<String> recipeIds = new ArrayList<String>();
     private ArrayList<String> recipeNames = new ArrayList<String>();
     private ArrayList<String> cookTimes = new ArrayList<String>();
@@ -83,7 +76,6 @@ public class FragmentRecipes extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        Toast.makeText(getActivity(), "onSaveInstanceState executed", Toast.LENGTH_SHORT).show();
 
         // save the current article selection in case we need to recreate the fragment
         outState.putString(Utils.ARG_KEY, currentKey);
@@ -93,12 +85,10 @@ public class FragmentRecipes extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(getActivity(), "onCreate executed", Toast.LENGTH_SHORT).show();
 
         if (savedInstanceState != null) {
             currentKey = savedInstanceState.getString(Utils.ARG_KEY);
             activePage = savedInstanceState.getString(Utils.ARG_PAGE);
-            Toast.makeText(getActivity(), "onCreate savedInstanceState currentKey:"+currentKey, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -107,13 +97,10 @@ public class FragmentRecipes extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_recipes, container, false);
 
-        Toast.makeText(getActivity(), "onCreateView executed", Toast.LENGTH_SHORT).show();
-        //setRetainInstance(true);
 
         if (savedInstanceState != null) {
             currentKey = savedInstanceState.getString(Utils.ARG_KEY);
             activePage = savedInstanceState.getString(Utils.ARG_PAGE);
-            Toast.makeText(getActivity(), "savedInstanceState currentKey:"+currentKey, Toast.LENGTH_SHORT).show();
         }
 
         // Connect view objects and view id on xml.
@@ -164,7 +151,6 @@ public class FragmentRecipes extends Fragment {
     public void onStart() {
         super.onStart();
 
-        Toast.makeText(getActivity(), "onStart executed", Toast.LENGTH_SHORT).show();
         // during startup, check if there are arguments passed to the fragment.
         // onStart is a good place to do this because the layout has already been
         // applied to the fragment at this point so we can safely call the method

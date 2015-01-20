@@ -10,9 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.activities.ActivityAbout;
 import com.pongodev.recipesapp.adapters.AdapterAbout;
@@ -20,33 +18,21 @@ import com.pongodev.recipesapp.listeners.OnTapAboutListener;
 
 import java.util.ArrayList;
 
-/**
- * Created by taufanerfiyanto on 10/2/14.
- */
-
-/**
- * A placeholder fragment containing a simple view.
- */
 public class FragmentAbout extends Fragment {
 
+    // Create objects of views.
     RecyclerView recyclerView;
-    ProgressBarCircularIndeterminate prgLoading;
-    TextView txtEmpty;
-
     AdapterAbout adapterAbout;
     OnItemSelectedListener mCallback;
 
+    // Create arraylist variables to store data.
     ArrayList<String> titles = new ArrayList<String>();
     ArrayList<String> summaries = new ArrayList<String>();
 
+    // Create interface listener.
     public interface OnItemSelectedListener {
         public void onItemSelected(int position);
     }
-
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -75,12 +61,10 @@ public class FragmentAbout extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-
+        // Get data with asynctask.
         new syncGetData().execute();
 
-
         adapterAbout = new AdapterAbout(getActivity());
-
 
         adapterAbout.setOnTapAboutListener(new OnTapAboutListener() {
             @Override
@@ -114,13 +98,12 @@ public class FragmentAbout extends Fragment {
         }
     }
 
+    // Get data from string resources.
     public void getDataFromResources(){
-
         for(int i = 0;i < ActivityAbout.titles.length;i++){
             titles.add(ActivityAbout.titles[i]);
             summaries.add(ActivityAbout.summaries[i]);
         }
-
     }
 
     @Override

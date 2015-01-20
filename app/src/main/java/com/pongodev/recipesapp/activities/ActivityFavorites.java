@@ -62,7 +62,6 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentReci
                 switch (menuItem.getItemId()) {
                     case android.R.id.home:
                         finish();
-                        overridePendingTransition(R.anim.open_main, R.anim.close_next);
                         return true;
                     default:
                         return true;
@@ -73,10 +72,11 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentReci
 
     @Override
     public void onRecipeSelected(String ID, String CategoryName) {
-        Intent detailIntent = new Intent();
+        // Call Detail screen and passing recipe id to that screen.
+        Intent detailIntent = new Intent(getApplicationContext(), ActivityDetail.class);
         detailIntent.putExtra(Utils.ARG_KEY, ID);
         detailIntent.putExtra(Utils.ARG_PARENT_ACTIVITY, Utils.ARG_ACTIVITY_FAVORITES);
-        startActivity(detailIntent.setClass(this, ActivityDetail.class));
+        startActivity(detailIntent);
         overridePendingTransition(R.anim.open_next, R.anim.close_main);
     }
 
@@ -86,6 +86,7 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentReci
         dbhelperFavorites.close();
     }
 
+    // Add transition when back button pressed.
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -96,6 +97,7 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentReci
     protected void onResume() {
         super.onResume();
 
+        // Re-create recipes fragment when back to Favorites screen.
         Bundle arguments = new Bundle();
         arguments.putString(Utils.ARG_PAGE, Utils.ARG_FAVORITES);
         FragmentRecipes fragment = new FragmentRecipes();

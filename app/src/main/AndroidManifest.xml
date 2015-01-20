@@ -97,15 +97,6 @@
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
-        <activity
-            android:name=".activities.ActivityRecipes"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".activities.ActivityHome">
-            <!-- Parent activity meta-data to support 4.0 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.ActivityHome" />
-        </activity>
     </application>
 
 </manifest>

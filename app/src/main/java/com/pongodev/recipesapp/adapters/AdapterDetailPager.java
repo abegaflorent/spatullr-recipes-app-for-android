@@ -10,11 +10,9 @@ import com.pongodev.recipesapp.R;
 
 import java.util.List;
 
-/**
- * Created by taufanerfiyanto on 12/28/14.
- */
 public class AdapterDetailPager extends FragmentPagerAdapter {
 
+    // Create variables and list for titles and pagers.
     private final String[] pagerTitles;
     private final List<Fragment> pagerFragments;
 

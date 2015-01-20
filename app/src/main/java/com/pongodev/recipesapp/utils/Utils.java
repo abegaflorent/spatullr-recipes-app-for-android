@@ -21,7 +21,6 @@ public class Utils {
     public static final String ARG_SEARCH = "search";
     public static final String ARG_FAVORITES = "favorites";
     public static final String ARG_KEY = "key";
-    public static final String ARG_POSITION = "position";
     public static final String ARG_TAG_CONTENT = "CONTENT_HERE";
     public static final String ARG_COOK_TIME = "cook_time";
     public static final String ARG_SERVINGS = "servings";
@@ -31,6 +30,7 @@ public class Utils {
     public static final String ARG_ACTIVITY_HOME = "activities.ActivityHome";
     public static final String ARG_ACTIVITY_SEARCH = "activities.ActivitySearch";
     public static final String ARG_ACTIVITY_FAVORITES = "activities.ActivityFavorites";
+    public static final String ARG_ACTIVITY_RECIPES = "activities.ActivityRecipes";
     public static final String ARG_TRIGGER = "trigger";
     public static final int ARG_GONE = 8;
 
@@ -39,7 +39,8 @@ public class Utils {
     public static final int ARG_TRIGGER_VALUE = 3;
     // Admob visibility parameter. set 0 to show admob and 8 to hide.
     public static final int ARG_ADMOB_VISIBILITY = 0;
-
+    // Set default category data, you can see the category id in sqlite database.
+    public static final String ARG_DEFAULT_CATEGORY_ID = "2";
 
     public static void loadAdmob(final AdView ad){
         final AdRequest adRequest = new AdRequest.Builder().

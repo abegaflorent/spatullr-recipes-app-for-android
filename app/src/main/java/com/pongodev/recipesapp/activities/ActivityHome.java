@@ -36,15 +36,13 @@ import com.pongodev.recipesapp.utils.Utils;
 public class ActivityHome extends ActionBarActivity
         implements FragmentCategories.OnCategorySelectedListener, FragmentRecipes.OnRecipeSelectedListener {
 
-    Toolbar toolbar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         // Set up the toolbar.
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.ic_logo);
 
@@ -117,6 +115,7 @@ public class ActivityHome extends ActionBarActivity
             fragRecipes.updateRecipes(ID, Utils.ARG_CATEGORY);
 
         } else {
+
             // If the fragRecipes is not available, we're in the one-pane layout and must swap frags...
             // create instance of FragmentRecipes and give it an argument for the selected article
             FragmentRecipes fragment = new FragmentRecipes();
@@ -136,17 +135,19 @@ public class ActivityHome extends ActionBarActivity
             // Commit the transaction.
             transaction.commit();
 
+
+
         }
 
     }
 
     @Override
     public void onRecipeSelected(String ID, String CategoryName) {
-        // When recipe item is selected, go to Detail screen.
+        // Call Detail screen and passing recipe id to that screen.
         Intent detailIntent = new Intent(getApplicationContext(), ActivityDetail.class);
         detailIntent.putExtra(Utils.ARG_KEY, ID);
         detailIntent.putExtra(Utils.ARG_PARENT_ACTIVITY, Utils.ARG_ACTIVITY_HOME);
-        startActivity(detailIntent.setClass(this, ActivityDetail.class));
+        startActivity(detailIntent);
         overridePendingTransition(R.anim.open_next, R.anim.close_main);
     }
 

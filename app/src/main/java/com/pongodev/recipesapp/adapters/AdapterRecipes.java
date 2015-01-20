@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class AdapterRecipes extends RecyclerView.Adapter<AdapterRecipes.ViewHolder>
 {
+    // Create arraylist variables to store data.
     private final ArrayList<String> recipeIds;
     private final ArrayList<String> recipeNames;
     private final ArrayList<String> cookTimes;
@@ -65,8 +66,8 @@ public class AdapterRecipes extends RecyclerView.Adapter<AdapterRecipes.ViewHold
                     onTapListener.onTapView(recipeIds.get(position), "");
             }
         });
- //       viewHolder.textView.setText(textArrayList.get(i));
-        // set data to textview and imageview
+
+        // Set data to textview.
         viewHolder.txtRecipeName.setText(recipeNames.get(position));
         viewHolder.txtTime.setText(cookTime+" "+cookTimes.get(position)+" "+minutes+", "+
                 serveFor+" "+servings.get(position)+" "+persons);
@@ -91,7 +92,7 @@ public class AdapterRecipes extends RecyclerView.Adapter<AdapterRecipes.ViewHold
         public ViewHolder(View v)
         {
             super(v);
-            // connect views object and views id on xml
+            // Connect views object and views id on xml.
             txtRecipeName = (TextView) v.findViewById(R.id.txtTitle);
             txtTime = (TextView) v.findViewById(R.id.txtSubTitle);
             imgRecipe = (RoundedImageView) v.findViewById(R.id.imgThumbnail);
