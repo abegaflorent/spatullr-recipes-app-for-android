@@ -34,19 +34,6 @@ public class FragmentAbout extends Fragment {
         public void onItemSelected(int position);
     }
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
-    public static FragmentAbout newInstance() {
-        FragmentAbout fragment = new FragmentAbout();
-
-        return fragment;
-    }
-
-    public FragmentAbout() {
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

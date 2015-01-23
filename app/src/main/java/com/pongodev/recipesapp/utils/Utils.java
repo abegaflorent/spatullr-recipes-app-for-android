@@ -10,9 +10,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.pongodev.recipesapp.R;
 
-/**
- * Created by taufanerfiyanto on 12/19/14.
- */
 public class Utils {
 
     // Application parameters. do not change this parameters.
@@ -30,21 +27,33 @@ public class Utils {
     public static final String ARG_ACTIVITY_HOME = "activities.ActivityHome";
     public static final String ARG_ACTIVITY_SEARCH = "activities.ActivitySearch";
     public static final String ARG_ACTIVITY_FAVORITES = "activities.ActivityFavorites";
-    public static final String ARG_ACTIVITY_RECIPES = "activities.ActivityRecipes";
     public static final String ARG_TRIGGER = "trigger";
     public static final int ARG_GONE = 8;
+    public static final int ARG_DEBUGGING = 1;
 
     // Configurable parameters. you can configure these parameter.
+    // Set database path. It must be similar with package name.
+    public static final String ARG_DATABASE_PATH = "/data/data/com.pongodev.recipesapp/databases/";
     // For every recipe detail you want to display interstitial ad
     public static final int ARG_TRIGGER_VALUE = 3;
     // Admob visibility parameter. set 0 to show admob and 8 to hide.
     public static final int ARG_ADMOB_VISIBILITY = 0;
+    // Set value to 1 if you are still in development process, and zero if you are ready to publish the app.
+    public static final int ARG_ADMOB_DEVELOPMENT_TYPE = 1;
     // Set default category data, you can see the category id in sqlite database.
     public static final String ARG_DEFAULT_CATEGORY_ID = "2";
 
     public static void loadAdmob(final AdView ad){
-        final AdRequest adRequest = new AdRequest.Builder().
-                addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        // Create an ad request.
+        AdRequest adRequest;
+        if(ARG_ADMOB_DEVELOPMENT_TYPE == ARG_DEBUGGING) {
+            adRequest = new AdRequest.Builder().
+                    addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        }else {
+            adRequest = new AdRequest.Builder().build();
+        }
+
+        // Start loading the ad.
         ad.loadAd(adRequest);
 
         ad.setAdListener(new AdListener() {
@@ -70,15 +79,17 @@ public class Utils {
 
         interstitialAd.setAdUnitId(c.getResources().getString(R.string.interstitial_ad_unit_id));
         // Create an ad request.
-        // Remove addTestDevice() method when you ready to publish the app.
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
+        AdRequest adRequest;
+        if(ARG_ADMOB_DEVELOPMENT_TYPE == ARG_DEBUGGING) {
+            adRequest = new AdRequest.Builder()
+                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                    .build();
+        }else {
+            adRequest = new AdRequest.Builder().build();
+        }
 
-        // Start loading the ad
+        // Start loading the ad.
         interstitialAd.loadAd(adRequest);
-
-
 
         // Set the AdListener.
         interstitialAd.setAdListener(new AdListener() {
@@ -106,10 +117,7 @@ public class Utils {
     // Method to load map type setting
     public static int loadPreferences(String param, Context c){
         SharedPreferences sharedPreferences = c.getSharedPreferences("user_data", 0);
-        int value = sharedPreferences.getInt(param, 0);
-
-
-        return value;
+        return sharedPreferences.getInt(param, 0);
     }
 
     // Method to save map type setting to SharedPreferences
@@ -117,6 +125,6 @@ public class Utils {
         SharedPreferences sharedPreferences = c.getSharedPreferences("user_data", 0);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putInt(param, value);
-        editor.commit();
+        editor.apply();
     }
 }

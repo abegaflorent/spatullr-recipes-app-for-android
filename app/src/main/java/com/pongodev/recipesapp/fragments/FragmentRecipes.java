@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +26,7 @@ import java.util.ArrayList;
 
 public class FragmentRecipes extends Fragment {
 
+    // Create objects of views.
     RecyclerView recyclerView;
     ProgressBarCircularIndeterminate prgLoading;
     TextView txtEmpty;
@@ -55,23 +55,7 @@ public class FragmentRecipes extends Fragment {
         public void onRecipeSelected(String ID, String CategoryName);
     }
 
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
-    public static FragmentCategories newInstance() {
-        FragmentCategories fragment = new FragmentCategories();
-
-        return fragment;
-    }
-
-    public FragmentRecipes() {
-    }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -117,10 +101,11 @@ public class FragmentRecipes extends Fragment {
         if(isAdmobVisible)
             Utils.loadAdmob(adView);
 
-
+        // Create object of database helpers.
         dbhelperRecipes = new DBHelperRecipes(getActivity());
         dbhelperFavorites = new DBHelperFavorites(getActivity());
 
+        // Create database of recipes.
         try {
             dbhelperRecipes.createDataBase();
             dbhelperFavorites.createDataBase();
@@ -128,11 +113,9 @@ public class FragmentRecipes extends Fragment {
             throw new Error("Unable to create database");
         }
 
+        // Open recipes database.
         dbhelperRecipes.openDataBase();
         dbhelperFavorites.openDataBase();
-
-
-
 
         adapterRecipes = new AdapterRecipes(getActivity());
 
@@ -151,17 +134,17 @@ public class FragmentRecipes extends Fragment {
     public void onStart() {
         super.onStart();
 
-        // during startup, check if there are arguments passed to the fragment.
+        // During startup, check if there are arguments passed to the fragment.
         // onStart is a good place to do this because the layout has already been
         // applied to the fragment at this point so we can safely call the method
         // below that sets the article text.
 
         Bundle args = getArguments();
         if (args != null) {
-            // set article based on argument passed in
+            // Set recipes based on argument passed in
             updateRecipes(args.getString(Utils.ARG_KEY), args.getString(Utils.ARG_PAGE));
         } else if (!currentKey.equals("")) {
-            // set article based on saved instance state defined during onCreateView
+            // Set recipes based on saved instance state defined during onCreateView
             updateRecipes(currentKey, activePage);
         }
     }
@@ -221,11 +204,6 @@ public class FragmentRecipes extends Fragment {
             data = dbhelperRecipes.getRecipesByName(key);
         }else if(activePage.equals(Utils.ARG_FAVORITES)){
             data = dbhelperFavorites.getAllRecipesData();
-            if(data == null) {
-                Log.d("Data :", "kosong");
-            }else{
-                Log.d("Data :","ada");
-            }
         }
 
 

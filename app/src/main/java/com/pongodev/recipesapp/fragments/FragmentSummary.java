@@ -13,9 +13,10 @@ import com.pongodev.recipesapp.utils.Utils;
 
 public class FragmentSummary extends Fragment {
 
+    // Create objects of views.
     TextView txtTime, txtSummary;
 
-
+    // Create variables to store data.
     private String time, minutes, serveFor, persons;
     private String cookTime, servings, summary;
 
@@ -33,6 +34,8 @@ public class FragmentSummary extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Store data that pass from activity to variables.
         cookTime = getArguments().getString(Utils.ARG_COOK_TIME);
         servings = getArguments().getString(Utils.ARG_SERVINGS);
         summary = getArguments().getString(Utils.ARG_SUMMARY);
@@ -43,14 +46,17 @@ public class FragmentSummary extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_summary,container,false);
 
+        // Connect view objects and view id on xml.
         txtTime = (TextView) rootView.findViewById(R.id.txtTime);
         txtSummary = (TextView) rootView.findViewById(R.id.txtSummary);
 
+        // Get data from string resources.
         time = getResources().getString(R.string.cook_time);
         minutes = getResources().getString(R.string.minutes);
         serveFor = getResources().getString(R.string.serve_for);
         persons = getResources().getString(R.string.persons);
 
+        // Set data to textviews.
         txtTime.setText(time+" "+cookTime+" "+minutes+", "+
                 serveFor+" "+servings+" "+persons);
         txtSummary.setText(summary);

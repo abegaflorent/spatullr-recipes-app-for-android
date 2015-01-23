@@ -35,10 +35,10 @@
     <string name="google_play_url">https://play.google.com/store/apps/details?id=your.package.name</string>
 
     <!-- Banner ad id. Insert your own banner id, you can get banner id via admob. -->
-    <string name="banner_ad_unit_id">ca-app-pub-9916016100298827/2631172790</string>
+    <string name="banner_ad_unit_id">BANNER_AD_UNIT_ID</string>
 
     <!-- Interstitial ad id. Insert your own interstitial id, you can get interstitial id via admob. -->
-    <string name="interstitial_ad_unit_id">ca-app-pub-9916016100298827/2158779599</string>
+    <string name="interstitial_ad_unit_id">INTERSTITIAL_AD_UNIT_ID</string>
 
     <!-- Confirmation dialog -->
     <string name="cancel">CANCEL</string>

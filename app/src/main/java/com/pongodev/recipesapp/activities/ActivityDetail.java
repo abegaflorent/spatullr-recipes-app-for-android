@@ -1,3 +1,6 @@
+/*
+* Copyright (c) 2015 Pongodev. All Rights Reserved.
+*/
 package com.pongodev.recipesapp.activities;
 
 import android.content.Intent;
@@ -13,13 +16,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.astuetz.PagerSlidingTabStrip;
 import com.flaviofaria.kenburnsview.KenBurnsView;
 import com.gc.materialdesign.views.ButtonFloat;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
+import com.gc.materialdesign.widgets.SnackBar;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.pongodev.recipesapp.R;
@@ -168,7 +171,7 @@ public class ActivityDetail extends ActionBarActivity {
                             public void onPositive(MaterialDialog dialog) {
                                 boolean result = dbhelperFavorites.deleteRecipeFromFavorites(selectedId);
                                 if (result) {
-                                    Toast.makeText(getApplicationContext(), R.string.success_remove, Toast.LENGTH_SHORT).show();
+                                    new SnackBar(ActivityDetail.this, getString(R.string.success_remove)).show();
                                     btnFavorite.setIconDrawable(getResources().getDrawable(R.drawable.ic_favorite_white_36dp));
                                     dialog.dismiss();
                                 }
@@ -187,7 +190,7 @@ public class ActivityDetail extends ActionBarActivity {
                             ingredients, steps, recipeImage);
 
                     if(result){
-                        Toast.makeText(getApplicationContext(), getString(R.string.success_add_data), Toast.LENGTH_SHORT).show();
+                        new SnackBar(ActivityDetail.this, getString(R.string.success_add_data)).show();
                         btnFavorite.setIconDrawable(getResources().getDrawable(R.drawable.ic_favorite_outline_white_36dp));
                     }
                 }

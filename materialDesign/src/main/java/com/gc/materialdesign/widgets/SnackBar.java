@@ -61,7 +61,8 @@ public class SnackBar extends Dialog{
 	    ((TextView)findViewById(R.id.text)).setTextSize(textSize); //set textSize
 		button = (ButtonFlat) findViewById(R.id.buttonflat);
 		if(text == null || onClickListener == null){
-			button.setVisibility(View.GONE);
+			button.setVisibility(View.INVISIBLE);
+            button.setClickable(false);
 		}else{
 			button.setText(buttonText);
 			button.setTextColor(buttonTextColor);

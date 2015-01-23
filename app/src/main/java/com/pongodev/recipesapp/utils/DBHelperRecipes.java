@@ -14,13 +14,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-/**
- * Created by taufanerfiyanto on 10/21/14.
- */
 public class DBHelperRecipes extends SQLiteOpenHelper {
     // path of database when app installed on device
-    // if you change your package name, make sure to also change this package name
-    private static String DB_PATH = "/data/data/com.pongodev.recipesapp/databases/";
+    private static String DB_PATH = Utils.ARG_DATABASE_PATH;
 
     // create database name and version
     private final static String DB_NAME = "db_recipes";

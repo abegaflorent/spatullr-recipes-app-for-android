@@ -1,3 +1,6 @@
+/*
+* Copyright (c) 2015 Pongodev. All Rights Reserved.
+*/
 package com.pongodev.recipesapp.activities;
 
 import android.app.SearchManager;
@@ -116,6 +119,7 @@ public class ActivityHome extends ActionBarActivity
 
         } else {
 
+
             // If the fragRecipes is not available, we're in the one-pane layout and must swap frags...
             // create instance of FragmentRecipes and give it an argument for the selected article
             FragmentRecipes fragment = new FragmentRecipes();
@@ -134,7 +138,6 @@ public class ActivityHome extends ActionBarActivity
 
             // Commit the transaction.
             transaction.commit();
-
 
 
         }

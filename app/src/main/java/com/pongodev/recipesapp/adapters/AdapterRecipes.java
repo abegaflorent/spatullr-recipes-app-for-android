@@ -1,3 +1,6 @@
+/*
+* Copyright (c) 2015 Pongodev. All Rights Reserved.
+*/
 package com.pongodev.recipesapp.adapters;
 
 import android.content.Context;
@@ -64,6 +67,7 @@ public class AdapterRecipes extends RecyclerView.Adapter<AdapterRecipes.ViewHold
             {
                 if (onTapListener != null)
                     onTapListener.onTapView(recipeIds.get(position), "");
+
             }
         });
 

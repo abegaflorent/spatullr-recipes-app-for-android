@@ -1,3 +1,6 @@
+/*
+* Copyright (C) 2015 Pongodev
+*/
 package com.pongodev.recipesapp.adapters;
 
 import android.content.Context;

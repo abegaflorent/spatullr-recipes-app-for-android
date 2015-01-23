@@ -13,8 +13,8 @@ import android.view.ViewGroup;
 import com.gc.materialdesign.views.ProgressBarCircularIndeterminate;
 import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.adapters.AdapterCategories;
-import com.pongodev.recipesapp.utils.DBHelperRecipes;
 import com.pongodev.recipesapp.listeners.OnTapListener;
+import com.pongodev.recipesapp.utils.DBHelperRecipes;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,18 +44,6 @@ public class FragmentCategories extends Fragment {
         public void onCategorySelected(String ID, String CategoryName);
     }
 
-    /**
-     * Returns a new instance of this fragment for the given section
-     * number.
-     */
-    public static FragmentCategories newInstance() {
-        FragmentCategories fragment = new FragmentCategories();
-
-        return fragment;
-    }
-
-    public FragmentCategories() {
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

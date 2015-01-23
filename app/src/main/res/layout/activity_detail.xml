@@ -81,7 +81,6 @@
 
     </LinearLayout>
 
-
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
         android:layout_width="match_parent"
@@ -90,6 +89,7 @@
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id"
         android:layout_alignParentBottom="true"
+        android:background="@color/detail_background_color"
         android:visibility="gone">
     </com.google.android.gms.ads.AdView>
 

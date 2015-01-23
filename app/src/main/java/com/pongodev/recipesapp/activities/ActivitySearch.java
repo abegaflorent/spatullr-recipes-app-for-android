@@ -1,3 +1,6 @@
+/*
+* Copyright (c) 2015 Pongodev. All Rights Reserved.
+*/
 package com.pongodev.recipesapp.activities;
 
 import android.app.SearchManager;

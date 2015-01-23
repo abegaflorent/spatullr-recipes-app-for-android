@@ -16,13 +16,13 @@ public class FragmentInfo extends Fragment {
     // Create objects of views.
     WebView webInfo;
 
+    // Create variable to store data.
     private String info;
 
+    // Format webview content.
     String htmlFormat = "<body bgcolor=\"#FBFBFB\">" +
             "<font color=\"#212121\">"+ Utils.ARG_TAG_CONTENT+ "</font>" +
             "</body>";
-
-
 
     public static FragmentInfo newInstance(String info) {
         FragmentInfo fragment = new FragmentInfo();
@@ -35,12 +35,14 @@ public class FragmentInfo extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Store data that pass from activity to info.
         info = getArguments().getString(Utils.ARG_INFO);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_info,container,false);
+        // Connect view objects and view id on xml.
         webInfo = (WebView) rootView.findViewById(R.id.webInfo);
 
         // Load value to webview.
