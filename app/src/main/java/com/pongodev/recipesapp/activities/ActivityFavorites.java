@@ -12,15 +12,10 @@ import android.view.MenuItem;
 
 import com.pongodev.recipesapp.R;
 import com.pongodev.recipesapp.fragments.FragmentRecipes;
-import com.pongodev.recipesapp.utils.DBHelperFavorites;
 import com.pongodev.recipesapp.utils.Utils;
-
-import java.io.IOException;
 
 public class ActivityFavorites extends ActionBarActivity implements FragmentRecipes.OnRecipeSelectedListener {
 
-    // Create instance of database helper.
-    DBHelperFavorites dbhelperFavorites;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +26,6 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentReci
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        // Create object of database helper.
-        dbhelperFavorites = new DBHelperFavorites(this);
-
-        // Create favorites database.
-        try {
-            dbhelperFavorites.createDataBase();
-        }catch(IOException ioe){
-            throw new Error("Unable to create database");
-        }
-
-        // Open favorites database
-        dbhelperFavorites.openDataBase();
 
         if (savedInstanceState == null) {
             // Create the recipes fragment and add it to the activity
@@ -81,12 +63,6 @@ public class ActivityFavorites extends ActionBarActivity implements FragmentReci
         detailIntent.putExtra(Utils.ARG_PARENT_ACTIVITY, Utils.ARG_ACTIVITY_FAVORITES);
         startActivity(detailIntent);
         overridePendingTransition(R.anim.open_next, R.anim.close_main);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        dbhelperFavorites.close();
     }
 
     // Add transition when back button pressed.
