@@ -28,7 +28,7 @@ public class Utils {
     public static final String ARG_ACTIVITY_SEARCH = "activities.ActivitySearch";
     public static final String ARG_ACTIVITY_FAVORITES = "activities.ActivityFavorites";
     public static final String ARG_TRIGGER = "trigger";
-    public static final int ARG_GONE = 8;
+    public static final int ARG_GONE = 0;
     public static final int ARG_DEBUGGING = 1;
 
     // Configurable parameters. you can configure these parameter.
@@ -36,7 +36,7 @@ public class Utils {
     public static final String ARG_DATABASE_PATH = "/data/data/com.pongodev.recipesapp/databases/";
     // For every recipe detail you want to display interstitial ad
     public static final int ARG_TRIGGER_VALUE = 3;
-    // Admob visibility parameter. set 0 to show admob and 8 to hide.
+    // Admob visibility parameter. set 1 to show admob and 0 to hide.
     public static final int ARG_ADMOB_VISIBILITY = 0;
     // Set value to 1 if you are still in development process, and zero if you are ready to publish the app.
     public static final int ARG_ADMOB_DEVELOPMENT_TYPE = 1;
@@ -69,10 +69,13 @@ public class Utils {
 
     public static boolean admobVisibility(AdView ad, int parameter){
         ad.setVisibility(parameter);
-        if(parameter == ARG_GONE )
+        if(parameter == ARG_GONE ) {
+            ad.setVisibility(View.INVISIBLE);
             return false;
-        else
+        }else {
+            ad.setVisibility(View.VISIBLE);
             return true;
+        }
     }
 
     public static void loadAdmobInterstitial(final InterstitialAd interstitialAd, Context c){

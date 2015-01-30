@@ -39,7 +39,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ActivityDetail extends ActionBarActivity {
+public class ActivityDetail extends ActionBarActivity implements View.OnClickListener {
 
     // Create view objects.
     KenBurnsView imgRecipe;
@@ -91,6 +91,8 @@ public class ActivityDetail extends ActionBarActivity {
         adView = (AdView) findViewById(R.id.adView);
         tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         pager = (ViewPager) findViewById(R.id.pager);
+
+        btnFavorite.setOnClickListener(this);
 
         // Check ad visibility. If visible, display ad banner and interstitial.
         interstitialAd = new InterstitialAd(this);
@@ -152,37 +154,38 @@ public class ActivityDetail extends ActionBarActivity {
             }
         });
 
-        // Handle button favorite.
-        btnFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.btnFavorite:
                 if(dbhelperFavorites.isDataAvailable(selectedId)) {
                     // If recipe has already available in favorites database. display dialog to confirm remove it.
                     new MaterialDialog.Builder(ActivityDetail.this)
-                        .title(R.string.confirm)
-                        .content(R.string.confirm_message)
-                        .positiveText(R.string.remove)
-                        .negativeText(R.string.cancel)
-                        .positiveColorRes(R.color.color_primary)
-                        .negativeColorRes(R.color.color_primary)
-                        .callback(new MaterialDialog.ButtonCallback() {
-                            @Override
-                            public void onPositive(MaterialDialog dialog) {
-                                boolean result = dbhelperFavorites.deleteRecipeFromFavorites(selectedId);
-                                if (result) {
-                                    new SnackBar(ActivityDetail.this, getString(R.string.success_remove)).show();
-                                    btnFavorite.setIconDrawable(getResources().getDrawable(R.drawable.ic_favorite_white_36dp));
+                            .title(R.string.confirm)
+                            .content(R.string.confirm_message)
+                            .positiveText(R.string.remove)
+                            .negativeText(R.string.cancel)
+                            .positiveColorRes(R.color.color_primary)
+                            .negativeColorRes(R.color.color_primary)
+                            .callback(new MaterialDialog.ButtonCallback() {
+                                @Override
+                                public void onPositive(MaterialDialog dialog) {
+                                    boolean result = dbhelperFavorites.deleteRecipeFromFavorites(selectedId);
+                                    if (result) {
+                                        new SnackBar(ActivityDetail.this, getString(R.string.success_remove)).show();
+                                        btnFavorite.setIconDrawable(getResources().getDrawable(R.drawable.ic_favorite_white_36dp));
+                                        dialog.dismiss();
+                                    }
+                                }
+
+                                @Override
+                                public void onNegative(MaterialDialog dialog) {
                                     dialog.dismiss();
                                 }
-                            }
-
-                            @Override
-                            public void onNegative(MaterialDialog dialog) {
-                                dialog.dismiss();
-                            }
-                        })
-                        .show();
+                            })
+                            .show();
                 }else{
                     // If recipes is not available in favorites database. add to favorites database.
                     boolean result = dbhelperFavorites.addRecipeToFavorites(recipeId, categoryId, recipeName,
@@ -194,9 +197,9 @@ public class ActivityDetail extends ActionBarActivity {
                         btnFavorite.setIconDrawable(getResources().getDrawable(R.drawable.ic_favorite_outline_white_36dp));
                     }
                 }
-            }
-        });
+                break;
 
+        }
     }
 
     public class syncGetData extends AsyncTask<Void, Void, Void> {
