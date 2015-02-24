@@ -14,7 +14,7 @@ import com.pongodev.recipesapp.utils.Utils;
 public class FragmentSummary extends Fragment {
 
     // Create objects of views.
-    TextView txtTime, txtSummary;
+    private TextView txtTime, txtSummary;
 
     // Create variables to store data.
     private String time, minutes, serveFor, persons;

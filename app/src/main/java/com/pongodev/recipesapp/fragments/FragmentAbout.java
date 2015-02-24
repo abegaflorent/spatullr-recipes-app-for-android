@@ -21,13 +21,13 @@ import java.util.ArrayList;
 public class FragmentAbout extends Fragment {
 
     // Create objects of views.
-    RecyclerView recyclerView;
-    AdapterAbout adapterAbout;
-    OnItemSelectedListener mCallback;
+    private RecyclerView recyclerView;
+    private AdapterAbout adapterAbout;
+    private OnItemSelectedListener mCallback;
 
     // Create arraylist variables to store data.
-    ArrayList<String> titles = new ArrayList<String>();
-    ArrayList<String> summaries = new ArrayList<String>();
+    private ArrayList<String> titles = new ArrayList<String>();
+    private ArrayList<String> summaries = new ArrayList<String>();
 
     // Create interface listener.
     public interface OnItemSelectedListener {

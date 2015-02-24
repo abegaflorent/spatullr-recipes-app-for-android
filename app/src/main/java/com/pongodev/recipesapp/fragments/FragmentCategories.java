@@ -22,18 +22,18 @@ import java.util.ArrayList;
 public class FragmentCategories extends Fragment {
 
     // Create objects of views.
-    RecyclerView recyclerView;
-    ProgressBarCircularIndeterminate prgLoading;
+    private RecyclerView recyclerView;
+    private ProgressBarCircularIndeterminate prgLoading;
 
     // Create instance of database helper.
-    DBHelperRecipes dbhelper;
+    private DBHelperRecipes dbhelper;
 
     // Create instance of adapter.
-    AdapterCategories adapterCategories;
+    private AdapterCategories adapterCategories;
 
-    OnCategorySelectedListener mCallback;
+    private OnCategorySelectedListener mCallback;
 
-    ArrayList<ArrayList<Object>> data;
+    private ArrayList<ArrayList<Object>> data;
 
     // Create arraylist variables to store data.
     private ArrayList<String> categoryIds = new ArrayList<String>();

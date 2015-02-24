@@ -27,19 +27,19 @@ import java.util.ArrayList;
 public class FragmentRecipes extends Fragment {
 
     // Create objects of views.
-    RecyclerView recyclerView;
-    ProgressBarCircularIndeterminate prgLoading;
-    TextView txtEmpty;
-    AdView adView;
+    private RecyclerView recyclerView;
+    private ProgressBarCircularIndeterminate prgLoading;
+    private TextView txtEmpty;
+    private AdView adView;
 
     // Create instance of database helper.
-    DBHelperRecipes dbhelperRecipes;
-    DBHelperFavorites dbhelperFavorites;
-    AdapterRecipes adapterRecipes;
+    private DBHelperRecipes dbhelperRecipes;
+    private DBHelperFavorites dbhelperFavorites;
+    private AdapterRecipes adapterRecipes;
 
-    OnRecipeSelectedListener mCallback;
+    private OnRecipeSelectedListener mCallback;
 
-    ArrayList<ArrayList<Object>> data;
+    private ArrayList<ArrayList<Object>> data;
 
     private String currentKey = Utils.ARG_DEFAULT_CATEGORY_ID;
     private String activePage = Utils.ARG_CATEGORY;

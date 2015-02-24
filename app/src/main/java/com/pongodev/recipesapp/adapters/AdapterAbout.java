@@ -40,7 +40,7 @@ public class AdapterAbout extends RecyclerView.Adapter<AdapterAbout.ViewHolder>
     {
 
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.row_about, null);
+                .inflate(R.layout.adapter_about, null);
 
         return new ViewHolder(v);
     }

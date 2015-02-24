@@ -37,7 +37,7 @@ public class Utils {
     // For every recipe detail you want to display interstitial ad
     public static final int ARG_TRIGGER_VALUE = 3;
     // Admob visibility parameter. set 1 to show admob and 0 to hide.
-    public static final int ARG_ADMOB_VISIBILITY = 0;
+    public static final int ARG_ADMOB_VISIBILITY = 1;
     // Set value to 1 if you are still in development process, and zero if you are ready to publish the app.
     public static final int ARG_ADMOB_DEVELOPMENT_TYPE = 1;
     // Set default category data, you can see the category id in sqlite database.

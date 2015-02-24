@@ -42,29 +42,29 @@ import java.util.List;
 public class ActivityDetail extends ActionBarActivity implements View.OnClickListener {
 
     // Create view objects.
-    KenBurnsView imgRecipe;
-    TextView txtRecipeName, txtCategory;
-    LinearLayout lytDetail, lytTitle;
-    ProgressBarCircularIndeterminate prgLoading;
-    ButtonFloat btnFavorite;
-    AdView adView;
-    PagerSlidingTabStrip tabs;
-    ViewPager pager;
-    InterstitialAd interstitialAd;
+    private KenBurnsView imgRecipe;
+    private TextView txtRecipeName, txtCategory;
+    private LinearLayout lytDetail, lytTitle;
+    private ProgressBarCircularIndeterminate prgLoading;
+    private ButtonFloat btnFavorite;
+    private AdView adView;
+    private PagerSlidingTabStrip tabs;
+    private ViewPager pager;
+    private InterstitialAd interstitialAd;
 
     // Create variables to store data.
-    String selectedId;
-    public String recipeId, categoryId, categoryName, recipeName, cookTime, servings, summary, ingredients, steps, recipeImage;
+    private String selectedId;
+    private String recipeId, categoryId, categoryName, recipeName, cookTime, servings, summary, ingredients, steps, recipeImage;
 
     // Create instance of database helper.
-    DBHelperRecipes dbhelperRecipes;
-    DBHelperFavorites dbhelperFavorites;
+    private DBHelperRecipes dbhelperRecipes;
+    private DBHelperFavorites dbhelperFavorites;
 
     // Create instance of adapter
-    AdapterDetailPager adapterDetailPager;
+    private AdapterDetailPager adapterDetailPager;
 
     // Create fragments for pager.
-    List<Fragment> pagerFragments = new ArrayList<Fragment>();
+    private List<Fragment> pagerFragments = new ArrayList<Fragment>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

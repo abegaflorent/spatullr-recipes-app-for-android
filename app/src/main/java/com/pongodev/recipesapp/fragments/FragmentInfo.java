@@ -14,13 +14,13 @@ import com.pongodev.recipesapp.utils.Utils;
 public class FragmentInfo extends Fragment {
 
     // Create objects of views.
-    WebView webInfo;
+    private WebView webInfo;
 
     // Create variable to store data.
     private String info;
 
     // Format webview content.
-    String htmlFormat = "<body bgcolor=\"#FBFBFB\">" +
+    private String htmlFormat = "<body bgcolor=\"#FBFBFB\">" +
             "<font color=\"#212121\">"+ Utils.ARG_TAG_CONTENT+ "</font>" +
             "</body>";
 

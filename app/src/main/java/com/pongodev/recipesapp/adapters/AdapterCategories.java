@@ -39,7 +39,7 @@ public class AdapterCategories extends RecyclerView.Adapter<AdapterCategories.Vi
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i)
     {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.row_categories, null);
+                .inflate(R.layout.adapter_categories, null);
 
         return new ViewHolder(v);
     }

@@ -52,7 +52,7 @@ public class AdapterRecipes extends RecyclerView.Adapter<AdapterRecipes.ViewHold
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i)
     {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.row_recipes, null);
+                .inflate(R.layout.adapter_recipes, null);
 
         return new ViewHolder(v);
     }
